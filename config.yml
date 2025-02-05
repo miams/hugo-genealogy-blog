@@ -1,0 +1,35 @@
+baseURL: ""
+languageCode: en-us
+title: Iiams Family Genealogy
+theme: hugo-PaperMod
+
+params:
+  homeInfoParams:
+    Title: Hi there wave
+    Content: Can be Info, links, about...
+
+cover:
+  hidden: false # hide everywhere but not in structured data
+  hiddenInList: false # hide on list pages and home
+  hiddenInSingle: false # hide on single page
+
+menu:
+  main:
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 30
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
