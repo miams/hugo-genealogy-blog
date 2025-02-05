@@ -5,8 +5,8 @@ theme: hugo-PaperMod
 
 params:
   homeInfoParams:
-    Title: Hi there wave
-    Content: Can be Info, links, about...
+#    Title: Hi there wave
+#    Content: Can be Info, links, about...
 
 cover:
   hidden: false # hide everywhere but not in structured data
