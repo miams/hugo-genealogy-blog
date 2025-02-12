@@ -1,17 +1,26 @@
-baseURL: ""
+baseURL: "https://blog.iams.name"
 languageCode: en-us
 title: Iiams Family Genealogy
 theme: hugo-PaperMod
 
+enableRobotsTXT: true
+
 params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
   homeInfoParams:
 #    Title: Hi there wave
 #    Content: Can be Info, links, about...
+
+excludeFiles: ["posts/**/*.txt"]
 
 cover:
   hidden: false # hide everywhere but not in structured data
   hiddenInList: false # hide on list pages and home
   hiddenInSingle: false # hide on single page
+
+  analytics:
+    google:
+      SiteVerificationTag: "G-G7BZ69D7P6"
 
 menu:
   main:

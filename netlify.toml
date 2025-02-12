@@ -1,6 +1,10 @@
 [build]
-  command = "hugo"
+  command = "hugo --gc --minify"
   publish = "public"
 
 [build.environment]
   HUGO_VERSION = "0.142.0"
+  TZ = "America/New_York"
+
+[dev] 
+command = "hugo -b http://127.0.0.1:8888/ -w --buildDrafts -F framework = #static publish = ./public/"
