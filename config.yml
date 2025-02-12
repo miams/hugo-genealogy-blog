@@ -18,6 +18,7 @@ cover:
   hiddenInList: false # hide on list pages and home
   hiddenInSingle: false # hide on single page
 
+services:
   analytics:
     google:
       SiteVerificationTag: "G-G7BZ69D7P6"
