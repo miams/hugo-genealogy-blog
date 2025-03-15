@@ -2,25 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Iiams Family Genealogy</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>http://localhost:52078/posts/</link>
     <description>Recent content in Posts on Iiams Family Genealogy</description>
     <generator>Hugo -- 0.142.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Feb 2025 06:51:02 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Mar 2025 20:51:02 -0500</lastBuildDate>
+    <atom:link href="http://localhost:52078/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New website features</title>
+      <link>http://localhost:52078/posts/003/</link>
+      <pubDate>Mon, 10 Mar 2025 20:51:02 -0500</pubDate>
+      <guid>http://localhost:52078/posts/003/</guid>
+      <description>Introducing DataTables and improved image display capability</description>
+    </item>
     <item>
       <title>Who was William L. Iams (1872-1896)?</title>
-      <link>http://localhost:1313/posts/002/</link>
+      <link>http://localhost:52078/posts/002/</link>
       <pubDate>Tue, 11 Feb 2025 06:51:02 -0500</pubDate>
-      <guid>http://localhost:1313/posts/002/</guid>
+      <guid>http://localhost:52078/posts/002/</guid>
       <description>At the young age of 20 years old, while deployed as a member of the Pennsylvania Reserves, William Iams made an ill-advised cheer. What immediately followed was his torture by his own commanders nearly to the point of unconsciousness, literal tar and feathering out of camp, dismissal from the Army, and an national news spectacle with court-room drama.  And ultimately, his violent death only four years later.</description>
     </item>
     <item>
       <title>Who was Raleigh Brown Ijams (1858-1907)?</title>
-      <link>http://localhost:1313/posts/001/rin_1635/</link>
+      <link>http://localhost:52078/posts/001/rin_1635/</link>
       <pubDate>Sun, 02 Feb 2025 06:51:02 -0500</pubDate>
-      <guid>http://localhost:1313/posts/001/rin_1635/</guid>
+      <guid>http://localhost:52078/posts/001/rin_1635/</guid>
       <description>Raleigh Brown Ijams was born into a wealthy family in modern day West Virginia, raised in Baltimore and later lived in Manhattan. He engaged in a variety of business ventures. He never married, nor had any children, and died at a relatively young age of 48. Fortunately, through his appreciation of a young Helen Keller, we learn much more about Raleigh.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:52078/posts/004/william_burgess_will_analysis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:52078/posts/004/william_burgess_will_analysis/</guid>
+      <description>&lt;h1 id=&#34;analysis-and-summary-of-the-will-of-william-burgess-16221686&#34;&gt;Analysis and Summary of the Will of William Burgess (1622–1686)&lt;/h1&gt;
+&lt;p&gt;The following is a detailed analysis and summary of the 1685 Will of William Burgess of Anne Arundel County, Maryland.&lt;/p&gt;
+&lt;h2 id=&#34;summary-of-william-burgesss-will&#34;&gt;Summary of William Burgess&amp;rsquo;s Will&lt;/h2&gt;
+&lt;p&gt;William Burgess&amp;rsquo;s will, dated &lt;strong&gt;11 July 1685&lt;/strong&gt;, provides extensive instructions concerning his religious beliefs, burial wishes, debts, and the distribution of his substantial estate among family members, friends, and a servant. It shows careful planning for the financial security of his wife, Ursula, and provisions for his children&amp;rsquo;s inheritances.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,47 @@
+{{ if .IsNamedParams }}
+  <table id="book-table">
+    <thead>
+      <tr>
+        <th>RIN</th>
+        <th>Given</th>
+        <th>Surname</th>
+        <th>BirthYear</th>
+        <th>DeathYear</th>
+        <th>LastUpdate</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ $data := index $.Site.Data.findagrave $.Params.data }}
+      {{ range $data }}
+        <tr>
+          {{ partial "findagrave" . }}
+        </tr>
+      {{ end }}
+    </tbody>
+    <table></table>
+  </table>
+{{- end -}}
+<script>
+  $(document).ready(function () {
+    $("#book-table").DataTable({
+      colReoder: false,
+      autoFill: false,
+      buttons: false,
+      fixedHeader: false,
+      keyTable: false,
+      responsive: true,
+      rowReoder: false,
+      columnDefs: [
+        {
+          targets: 0,
+          className: "dt-body-center",
+        },
+        {
+          targets: -1,
+          className: "dt-body-nowrap",
+          width: "30%",
+        },
+      ],
+    });
+  });
+</script>

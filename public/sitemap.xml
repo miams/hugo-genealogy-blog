@@ -2,50 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/baltimore/</loc>
+    <loc>http://localhost:52078/categories/</loc>
+    <lastmod>2025-03-10T20:51:02-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:52078/</loc>
+    <lastmod>2025-03-10T20:51:02-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:52078/posts/003/</loc>
+    <lastmod>2025-03-10T20:51:02-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:52078/posts/</loc>
+    <lastmod>2025-03-10T20:51:02-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:52078/categories/technology/</loc>
+    <lastmod>2025-03-10T20:51:02-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:52078/tags/baltimore/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:52078/tags/homestead-strike/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/homestead-strike/</loc>
+    <loc>http://localhost:52078/tags/pittsburgh/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:52078/tags/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/pittsburgh/</loc>
+    <loc>http://localhost:52078/tags/unusual-deaths/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:52078/categories/who-was/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:52078/posts/002/</loc>
     <lastmod>2025-02-11T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/unusual-deaths/</loc>
-    <lastmod>2025-02-11T06:51:02-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/who-was/</loc>
-    <lastmod>2025-02-11T06:51:02-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/002/</loc>
-    <lastmod>2025-02-11T06:51:02-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/civil-war/</loc>
+    <loc>http://localhost:52078/tags/civil-war/</loc>
     <lastmod>2025-02-02T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/new-york-city/</loc>
+    <loc>http://localhost:52078/tags/new-york-city/</loc>
     <lastmod>2025-02-02T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/slavery/</loc>
+    <loc>http://localhost:52078/tags/slavery/</loc>
     <lastmod>2025-02-02T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/001/rin_1635/</loc>
+    <loc>http://localhost:52078/posts/001/rin_1635/</loc>
     <lastmod>2025-02-02T06:51:02-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>http://localhost:52078/archives/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>http://localhost:52078/search/</loc>
   </url>
 </urlset>

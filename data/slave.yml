@@ -1,0 +1,29 @@
+slavery:
+  - age: 29
+    sex: Female
+    color: Black
+    fugitive: No
+  - age: 13
+    sex: Female
+    color: Mulatto
+    fugitive: No
+  - age: 68
+    sex: Male
+    color: Black
+    fugitive: Escaped
+  - age: 40
+    sex: Female
+    color: Black
+    fugitive: Escaped
+  - age: 36
+    sex: Male
+    color: Mulatto
+    fugitive: Escaped
+  - age: 22
+    sex: Male
+    color: Mulatto
+    fugitive: Escaped
+  - age: 25
+    sex: Female
+    color: Black
+    fugitive: Escaped

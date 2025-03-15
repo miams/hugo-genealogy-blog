@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Technology on Iiams Family Genealogy</title>
+    <link>http://localhost:52078/categories/technology/</link>
+    <description>Recent content in Technology on Iiams Family Genealogy</description>
+    <generator>Hugo -- 0.142.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Mar 2025 20:51:02 -0500</lastBuildDate>
+    <atom:link href="http://localhost:52078/categories/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New website features</title>
+      <link>http://localhost:52078/posts/003/</link>
+      <pubDate>Mon, 10 Mar 2025 20:51:02 -0500</pubDate>
+      <guid>http://localhost:52078/posts/003/</guid>
+      <description>Introducing DataTables and improved image display capability</description>
+    </item>
+  </channel>
+</rss>

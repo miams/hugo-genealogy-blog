@@ -13,7 +13,7 @@ params:
 
 # William L. Iams
 
-William Iams was born in 1872 in southwester Pennsylvania, the son of Joseph Martin Iams and wife Sarah (Piatt). William's father, Joseph, was a schoolteacher, reaching a mid-sized family of two sons and two daughters. Raised in nearby Union, West Virgina, William was 2nd of four children.
+William Iams was born in 1872 in southwestern Pennsylvania, the son of Joseph Martin Iams and wife Sarah (Piatt). William's father, Joseph, was a schoolteacher, reaching a mid-sized family of two sons and two daughters. Raised in nearby Union, West Virginia, William was 2nd of four children.
 
 # The Homestead Strike
 
@@ -22,12 +22,3 @@ William Iams was born in 1872 in southwester Pennsylvania, the son of Joseph Mar
 # The Lawsuit
 
 # A Sad and Untimely Death
-
-<!-- <script src="{{ .Site.BaseURL }}js/dataTables.min.js"></script>-->
-
-<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" />
-
-<!-- These can be included in the specific page directly so that other pages are not impacted-->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/2.2.2/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.css"></script>
