@@ -1,12 +1,42 @@
+---
+title: "Summary of the Will of William Burgess (1622-1686)"
+date: 2025-03-16T06:51:02-05:00
+draft: false
+tags: ["Early Anne Arundel Settlers"]
+categories: ["Source Analysis"]
+summary: "The will of William Burgess is preserved at the National Archives in London, one of only two wills from Anne Arundel colonists found in the English archives. With the assistance of ChatGPT, we transcribe and analyze this will to uncover insights into the life of William Burgess and, by extension, William Iiams."
+ShowWordCount: true
+ShowToc: true
+params:
+  ShowBreadCrumbs: true
+---
+
 # Analysis and Summary of the Will of William Burgess (1622–1686)
 
 The following is a detailed analysis and summary of the 1685 Will of William Burgess of Anne Arundel County, Maryland.
 
+## What is significant about William Burgess
+
+William Burgess is worthy of a full biography post, so we will write more about him later. Just within the context of William Iiams, Burgess is interesting for the following reasons.
+
+1. He came to Anne Arundel via Virginia, not directly from England. In 1650, he lead a group of 150 settlers from Virginia to the South River area of Anne Arundel.[^1]
+
+2. It is said he's originally from Truro, Cornwall, with some even believing Truro is in Wales.[^2] Both Wales and Cornwall are prime candidates for the origin of William Iiams.
+
+3. William Burgess was one of the wealthiest, and most powerful colonists in that area. He was a Colonel, responsible for leading the militia defending the area from attacks and the Maryland Governor appointed him to key positions throughout his life.
+
+4. We have a direct connection to William Burgess via his son, Benjamin and William Iiams' daughter, Hester. The couple had an affair that resulted in the birth of daughter, Ann. An excellent article exists about Hester's illicit relationships by Katherine Harbury.[^3]
+
 ## Summary of William Burgess's Will
 
-William Burgess's will, dated **11 July 1685**, provides extensive instructions concerning his religious beliefs, burial wishes, debts, and the distribution of his substantial estate among family members, friends, and a servant. It shows careful planning for the financial security of his wife, Ursula, and provisions for his children's inheritances.
+{{< figure
+src="/images/burgess-will-heading.png"
+alt="Beginning of William Burgess will"
+link="https://discovery.nationalarchives.gov.uk/details/r/D807854"
+caption="Beginning of William Burgess will. Imaged enhanced via ChatGPT-4 to look like laid paper used at the time."
+class="ma0 w-75">}}
 
----
+William Burgess's will,[^4] dated **11 July 1685**, provides extensive instructions concerning his religious beliefs, burial wishes, debts, and the distribution of his substantial estate among family members, friends, and a servant. It shows careful planning for the financial security of his wife, Ursula, and provisions for his children's inheritances. The document is one of only two wills from Anne Arundel colonists found in the England's National Archives, likely because several of William's children had moved to England. For convenience, the [full document from the National Archives is posted here](/documents/PROB-11-396-53.pdf), as well as a [transcription](/documents/burgess-transcribed-will.txt) created using ChatGPT-4.
 
 ## Beneficiaries and Bequests
 
@@ -85,3 +115,11 @@ It also offers significant research avenues to historians interested in colonial
 ---
 
 **This will represents an extraordinary record of 17th-century colonial life, illustrating economic, familial, and societal dimensions in early Maryland history.**
+
+[^1]: Joshua Dorsey Warfield, _The Founders of Anne Arundel and Howard Counties, Maryland: A Genealogical and Biographical  Review from Wills, Deeds and Church Records_ (Baltimore, Maryland: Kohn & Pollock, 1905), p. 12.
+
+[^2]: Image of plaquerd of William Burgess. https://www.findagrave.com/memorial/30662407/william-burgess
+
+[^3]: Katherine E. Harbury, "Beware of Appearances, Scenes One and Two: The Case of Hester Iiams," Maryland Genealogical Society Bulletin/Journal, Volume 52, Number 2 (2011).
+
+[^4]: “Discovery” database with images, The National Archives (https://discovery.nationalarchives.gov.uk/details/r/D807854: accessed 15 March 2025), image of will for William Burgess, Anne Arundel, Province of Maryland, 11 July 1685; citing PROB 11/396/53, Prerogative Court of Canterbury: Will Registers, Ent. Quire numbers: 91-138.

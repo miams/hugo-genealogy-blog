@@ -1,3 +1,5 @@
+# This Netlify account uses GitHub for authentication.  The other account is michael.iams@gmail.com for the GenQ website.
+
 [build]
   command = "hugo --gc --minify"
   publish = "public"

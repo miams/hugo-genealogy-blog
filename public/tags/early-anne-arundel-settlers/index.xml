@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Early Anne Arundel Settlers on Iiams Family Genealogy</title>
+    <link>http://localhost:52078/tags/early-anne-arundel-settlers/</link>
+    <description>Recent content in Early Anne Arundel Settlers on Iiams Family Genealogy</description>
+    <generator>Hugo -- 0.142.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Mar 2025 06:51:02 -0500</lastBuildDate>
+    <atom:link href="http://localhost:52078/tags/early-anne-arundel-settlers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Summary of the Will of William Burgess (1622-1686)?</title>
+      <link>http://localhost:52078/posts/004/william_burgess_will_analysis/</link>
+      <pubDate>Sun, 16 Mar 2025 06:51:02 -0500</pubDate>
+      <guid>http://localhost:52078/posts/004/william_burgess_will_analysis/</guid>
+      <description>The will of William Burgess is stored at the National Archives in London, one of only two wills of Anne Arundel colonials stored in the English archives.  With the asssistance of ChatGPT we transcribe and analyze this will to see what this original source tells use about the livefe of William Burgess and hopefully by extension, William Iiams.</description>
+    </item>
+  </channel>
+</rss>
