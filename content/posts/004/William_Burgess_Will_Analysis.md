@@ -1,5 +1,5 @@
 ---
-title: "Summary of the Will of William Burgess (1622-1686)"
+title: "Summary of the will of William Burgess (1622-1686)"
 date: 2025-03-16T06:51:02-05:00
 draft: false
 tags: ["Early Anne Arundel Settlers"]
@@ -13,7 +13,7 @@ params:
 
 # Analysis and Summary of the Will of William Burgess (1622–1686)
 
-The following is a detailed analysis and summary of the 1685 Will of William Burgess of Anne Arundel County, Maryland.
+The following is a detailed analysis and summary of the 1685 will of William Burgess of Anne Arundel County, Maryland.
 
 ## What is significant about William Burgess
 
@@ -25,18 +25,13 @@ William Burgess is worthy of a full biography post, so we will write more about 
 
 3. William Burgess was one of the wealthiest, and most powerful colonists in that area. He was a Colonel, responsible for leading the militia defending the area from attacks and the Maryland Governor appointed him to key positions throughout his life.
 
-4. We have a direct connection to William Burgess via his son, Benjamin and William Iiams' daughter, Hester. The couple had an affair that resulted in the birth of daughter, Ann. An excellent article exists about Hester's illicit relationships by Katherine Harbury.[^3]
+4. We have a direct connection to William Burgess via his son, Benjamin and William Iiams's daughter, Hester. The couple had an affair that resulted in the birth of daughter, Ann. An excellent article exists about Hester's illicit relationships by Katherine Harbury.[^3]
 
-## Summary of William Burgess's Will
+## Summary of William Burgess's will
 
-{{< figure
-src="/images/burgess-will-heading.png"
-alt="Beginning of William Burgess will"
-link="https://discovery.nationalarchives.gov.uk/details/r/D807854"
-caption="Beginning of William Burgess will. Imaged enhanced via ChatGPT-4 to look like laid paper used at the time."
-class="ma0 w-75">}}
+![Heading of William Burgess's will](/images/004/burgess-will-heading.png "Beginning of William Burgess's will. This image is enhanced via ChatGPT-4 to look like laid paper used at the time.")
 
-William Burgess's will,[^4] dated **11 July 1685**, provides extensive instructions concerning his religious beliefs, burial wishes, debts, and the distribution of his substantial estate among family members, friends, and a servant. It shows careful planning for the financial security of his wife, Ursula, and provisions for his children's inheritances. The document is one of only two wills from Anne Arundel colonists found in the England's National Archives, likely because several of William's children had moved to England. For convenience, the [full document from the National Archives is posted here](/documents/PROB-11-396-53.pdf), as well as a [transcription](/documents/burgess-transcribed-will.txt) created using ChatGPT-4.
+William Burgess's will,[^4] dated **11 July 1685**, provides extensive instructions concerning his religious beliefs, burial wishes, debts, and the distribution of his substantial estate among family members, friends, and a servant. It shows careful planning for the financial security of his wife, Ursula, and provisions for his children's inheritances. The document is one of only two wills from Anne Arundel colonists found in the England's National Archives, likely because several of William's children had moved to England. For convenience, the [full document from the National Archives is posted here](/files/004/PROB-11-396-53.pdf), as well as a [transcription](/files/004/burgess-transcribed-will.txt) created using ChatGPT-4.
 
 ## Beneficiaries and Bequests
 
@@ -118,7 +113,7 @@ It also offers significant research avenues to historians interested in colonial
 
 [^1]: Joshua Dorsey Warfield, _The Founders of Anne Arundel and Howard Counties, Maryland: A Genealogical and Biographical  Review from Wills, Deeds and Church Records_ (Baltimore, Maryland: Kohn & Pollock, 1905), p. 12.
 
-[^2]: Image of plaquerd of William Burgess. https://www.findagrave.com/memorial/30662407/william-burgess
+[^2]: Image of placard of William Burgess. https://www.findagrave.com/memorial/30662407/william-burgess
 
 [^3]: Katherine E. Harbury, "Beware of Appearances, Scenes One and Two: The Case of Hester Iiams," Maryland Genealogical Society Bulletin/Journal, Volume 52, Number 2 (2011).
 
