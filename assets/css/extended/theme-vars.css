@@ -1,3 +1,16 @@
 :root {
     --main-width: 1000px;
 }
+
+.dataTables_wrapper .dataTables_info {
+    padding-top: 0.85em;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 0.5em;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    padding-bottom: 1em;
+}
