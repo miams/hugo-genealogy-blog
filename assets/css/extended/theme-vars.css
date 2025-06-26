@@ -2,17 +2,34 @@
     --main-width: 1000px;
 }
 
-/* DataTables layout fix */
-.dataTables_wrapper .row {
-    clear: both;
+/* DataTables layout fix - prevent pagination info from overlapping controls */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 1em;
+}
+
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+}
+
+/* Ensure bottom controls have adequate space */
+.dataTables_wrapper .row:last-child {
+    margin-top: 1em;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .dataTables_wrapper .dataTables_info {
-    float: left;
-    padding-top: 0.85em;
+    float: none;
+    flex: 1;
 }
 
 .dataTables_wrapper .dataTables_paginate {
-    float: right;
+    float: none;
+    flex: 1;
     text-align: right;
 }
