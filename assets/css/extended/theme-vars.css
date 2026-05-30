@@ -2,34 +2,100 @@
     --main-width: 1000px;
 }
 
-/* DataTables layout fix - prevent pagination info from overlapping controls */
-.dataTables_wrapper .dataTables_length,
-.dataTables_wrapper .dataTables_filter {
-    margin-bottom: 1em;
+/* ------------------------------------------------------------------------
+   DataTables v2 (Bootstrap-styled download) layout fix.
+   The markup uses Bootstrap classes (.row, .d-md-flex, .col-md-auto, .page-item,
+   .page-link, etc.) but Bootstrap CSS isn't loaded on this site, so we style
+   the actual classes DataTables emits.
+   ------------------------------------------------------------------------ */
+
+/* Each control row: flex with start on the left, end on the right */
+div.dt-container > div.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.75em 0;
 }
 
-.dataTables_wrapper .dataTables_info,
-.dataTables_wrapper .dataTables_paginate {
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
+/* The middle row that holds the table itself should NOT be a flex row */
+div.dt-container > div.row.dt-layout-table {
+    display: block;
+    margin: 0;
 }
 
-/* Ensure bottom controls have adequate space */
-.dataTables_wrapper .row:last-child {
-    margin-top: 1em;
-    min-height: 2.5em;
+/* Layout slots */
+div.dt-container .dt-layout-start { margin-right: auto; }
+div.dt-container .dt-layout-end   { margin-left: auto; }
+
+/* Info text */
+div.dt-container div.dt-info {
+    font-size: 0.9em;
+    color: var(--secondary, #666);
+}
+
+/* Length & search controls */
+div.dt-container div.dt-length,
+div.dt-container div.dt-search {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.5em;
 }
 
-.dataTables_wrapper .dataTables_info {
-    float: none;
-    flex: 1;
+div.dt-container div.dt-length select,
+div.dt-container div.dt-search input {
+    padding: 4px 8px;
+    border: 1px solid var(--border, #ddd);
+    border-radius: 4px;
+    background: var(--theme, #fff);
+    color: var(--primary, #222);
+    font: inherit;
 }
 
-.dataTables_wrapper .dataTables_paginate {
-    float: none;
-    flex: 1;
-    text-align: right;
+/* Pagination: real flex container, no bullets, with proper button styling */
+div.dt-container div.dt-paging nav { display: block; }
+
+div.dt-container ul.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+div.dt-container ul.pagination li.dt-paging-button {
+    margin: 0;
+    padding: 0;
+}
+
+div.dt-container ul.pagination button.page-link {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--border, #ddd);
+    color: var(--primary, #222);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font: inherit;
+    line-height: 1.2;
+    min-width: 32px;
+    text-align: center;
+}
+
+div.dt-container ul.pagination button.page-link:hover:not([aria-disabled="true"]) {
+    background: var(--code-bg, #eee);
+}
+
+div.dt-container ul.pagination li.page-item.active button.page-link {
+    background: var(--primary, #222);
+    color: var(--theme, #fff);
+    border-color: var(--primary, #222);
+}
+
+div.dt-container ul.pagination li.page-item.disabled button.page-link {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
