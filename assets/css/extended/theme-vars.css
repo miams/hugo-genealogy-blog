@@ -2,6 +2,14 @@
     --main-width: 1000px;
 }
 
+/* Keep aspect ratio when width/height attributes are present
+   (render-image hook adds them for CLS prevention). */
+img,
+picture > img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* ------------------------------------------------------------------------
    DataTables v2 (Bootstrap-styled download) layout fix.
    The markup uses Bootstrap classes (.row, .d-md-flex, .col-md-auto, .page-item,
