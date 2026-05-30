@@ -3,13 +3,17 @@
   - External URLs: plain <img> with lazy loading.
   - Local images under /static/: <img> with width/height from imageConfig.
     If a sibling .webp file exists at the same path, wrap in <picture>
-    so modern browsers fetch the smaller WebP and others fall back to the original.
+    so modern browsers fetch the smaller WebP and others fall back.
+  - If the image has a title (third arg in ![alt](src "title")), wrap the
+    img/picture in a <figure> with the title as <figcaption>.
   - If the file is missing on disk, falls back to a plain <img> so the build
     doesn't break on stale paths.
 */ -}}
 {{- $src := .Destination -}}
 {{- $alt := .Text -}}
 {{- $title := .Title -}}
+{{- $hasTitle := ne $title "" -}}
+{{- if $hasTitle -}}<figure class="post-figure">{{- end -}}
 {{- if strings.HasPrefix $src "http" -}}
   <img src="{{ $src | safeURL }}" alt="{{ $alt }}" decoding="async" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
 {{- else -}}
@@ -33,3 +37,4 @@
     <img src="{{ $src | safeURL }}" alt="{{ $alt }}" decoding="async" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
   {{- end -}}
 {{- end -}}
+{{- if $hasTitle -}}<figcaption>{{ $title }}</figcaption></figure>{{- end -}}
