@@ -10,33 +10,53 @@ picture > img {
     height: auto;
 }
 
-/* Shrink the 1905 letter scans to 60% of the content column.
-   Target the <picture> wrapper; the inner <img> fills it at 100%. */
-article picture:has(> img[src*="/img/001/letter-1905-page"]) {
-    display: block;
-    max-width: 60%;
-    margin: 1em auto;
+/* Float article images so text wraps around them.
+   - Captioned <figure>s and bare <picture>s both float right.
+   - Width is ~22% of the content column, max ~220px.
+   - Lightbox provides full-size view on click.
+   - Mobile (<= 700px): floats are released, images recenter at full width. */
+article figure.post-figure,
+article picture:not(figure picture) {
+    float: right;
+    clear: right;
+    width: 22%;
+    max-width: 220px;
+    margin: 0.3em 0 0.6em 1.5em;
 }
 
-/* Figure + caption: emitted by the render-image hook when an image has a title. */
-.post-figure {
-    margin: 1.5em auto;
-    text-align: center;
-}
-.post-figure img,
-.post-figure picture {
+article figure.post-figure picture,
+article figure.post-figure img,
+article picture > img {
+    width: 100%;
+    margin: 0;
     display: block;
-    margin: 0 auto;
 }
-.post-figure figcaption {
-    margin-top: 0.5em;
-    font-size: 0.875em;
-    line-height: 1.4;
+
+article figure.post-figure figcaption {
+    margin-top: 0.4em;
+    font-size: 0.78em;
+    line-height: 1.35;
     color: var(--secondary, #777);
     font-style: italic;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+}
+
+/* Prevent a floated image from bleeding into the next section heading. */
+article h2,
+article h3 {
+    clear: both;
+}
+
+@media (max-width: 700px) {
+    article figure.post-figure,
+    article picture:not(figure picture) {
+        float: none;
+        clear: none;
+        width: auto;
+        max-width: 100%;
+        margin: 1em auto;
+        display: block;
+    }
 }
 
 /* ------------------------------------------------------------------------
