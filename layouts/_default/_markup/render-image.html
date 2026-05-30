@@ -1,0 +1,35 @@
+{{- /*
+  Markdown image render hook.
+  - External URLs: plain <img> with lazy loading.
+  - Local images under /static/: <img> with width/height from imageConfig.
+    If a sibling .webp file exists at the same path, wrap in <picture>
+    so modern browsers fetch the smaller WebP and others fall back to the original.
+  - If the file is missing on disk, falls back to a plain <img> so the build
+    doesn't break on stale paths.
+*/ -}}
+{{- $src := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+{{- if strings.HasPrefix $src "http" -}}
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" decoding="async" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
+{{- else -}}
+  {{- $rel := strings.TrimPrefix "/" $src -}}
+  {{- $diskPath := printf "static/%s" $rel -}}
+  {{- $webpRel := replaceRE `\.(jpe?g|png)$` ".webp" $rel -}}
+  {{- $webpDiskPath := printf "static/%s" $webpRel -}}
+  {{- $hasWebp := and (ne $webpRel $rel) (os.FileExists $webpDiskPath) -}}
+  {{- $webpUrl := printf "/%s" $webpRel -}}
+  {{- if os.FileExists $diskPath -}}
+    {{- $cfg := imageConfig $diskPath -}}
+    {{- if $hasWebp -}}
+      <picture>
+        <source srcset="{{ $webpUrl | safeURL }}" type="image/webp">
+        <img src="{{ $src | safeURL }}" alt="{{ $alt }}" width="{{ $cfg.Width }}" height="{{ $cfg.Height }}" decoding="async" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
+      </picture>
+    {{- else -}}
+      <img src="{{ $src | safeURL }}" alt="{{ $alt }}" width="{{ $cfg.Width }}" height="{{ $cfg.Height }}" decoding="async" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
+    {{- end -}}
+  {{- else -}}
+    <img src="{{ $src | safeURL }}" alt="{{ $alt }}" decoding="async" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
+  {{- end -}}
+{{- end -}}
