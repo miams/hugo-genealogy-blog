@@ -10,6 +10,14 @@ picture > img {
     height: auto;
 }
 
+/* Shrink the 1905 letter scans to 60% of the content column.
+   Target the <picture> wrapper; the inner <img> fills it at 100%. */
+article picture:has(> img[src*="/img/001/letter-1905-page"]) {
+    display: block;
+    max-width: 60%;
+    margin: 1em auto;
+}
+
 /* ------------------------------------------------------------------------
    DataTables v2 (Bootstrap-styled download) layout fix.
    The markup uses Bootstrap classes (.row, .d-md-flex, .col-md-auto, .page-item,
