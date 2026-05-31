@@ -11,17 +11,40 @@ picture > img {
 }
 
 /* Float article images so text wraps around them.
-   - Captioned <figure>s and bare <picture>s both float right.
-   - Width is ~22% of the content column, max ~220px.
-   - Lightbox provides full-size view on click.
+   - Captioned <figure>s and bare <picture>s alternate L/R via data-float
+     attribute set by /js/image-float.js.
+   - Width is ~40% of the content column, max 400px.
+   - shape-outside: margin-box lets text follow the actual contour with
+     a 1em breathing margin.
+   - hyphens: auto helps the narrowed text column fill better.
    - Mobile (<= 700px): floats are released, images recenter at full width. */
+
+/* Contain floats inside the article element so they can't bleed into
+   the footnotes or following blocks. */
+article {
+    display: flow-root;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
 article figure.post-figure,
 article picture:not(figure picture) {
-    float: right;
-    clear: right;
     width: 40%;
     max-width: 400px;
+    shape-outside: margin-box;
+    shape-margin: 1em;
+}
+
+/* Direction set per-image by image-float.js (alternates 0/1/0/1 in DOM order). */
+article [data-float="right"] {
+    float: right;
+    clear: right;
     margin: 0.3em 0 0.6em 1.5em;
+}
+article [data-float="left"] {
+    float: left;
+    clear: left;
+    margin: 0.3em 1.5em 0.6em 0;
 }
 
 article figure.post-figure picture,
@@ -41,13 +64,18 @@ article figure.post-figure figcaption {
     text-align: center;
 }
 
-/* Prevent a floated image from bleeding into the next section heading. */
+/* Keep section headings on their own line, never alongside a previous
+   section's float. (display: flow-root on article contains floats
+   within the article element, but a heading can still appear next to
+   an unfinished float in the same flow without this rule.) */
 article h2,
 article h3 {
     clear: both;
 }
 
 @media (max-width: 700px) {
+    article [data-float="right"],
+    article [data-float="left"],
     article figure.post-figure,
     article picture:not(figure picture) {
         float: none;
