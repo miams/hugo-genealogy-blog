@@ -1005,20 +1005,20 @@ a.person-row__name:hover {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
-/* ---- Card images (full mode only) ----
+/* ---- Card images ----
    Each chapter may carry an `img:` path; `imgpos:` chooses where it sits
-   on the card (top | left | right, default top). Images only render in
-   full mode so condensed/compact stay quick to scan. Clicking the thumb
-   opens the existing lightbox (the `[data-lightbox]` attribute is wired
-   by lightbox.js). */
-.storytimeline__imglink { display: none; }
-.storytimeline--mode-full .storytimeline__imglink {
+   on the card (top | left | right, default top). Clicking the thumb opens
+   the existing lightbox (the `[data-lightbox]` attribute is wired by
+   lightbox.js). Images render in all modes — compact hides cards entirely
+   (only the active card shows, and its image with it), so this stays
+   uncluttered. */
+.storytimeline__imglink {
   display: block;
   overflow: hidden;
   background: var(--band);
 }
-.storytimeline--mode-full .storytimeline__imglink:hover { opacity: 0.92; }
-.storytimeline--mode-full .storytimeline__cardimg {
+.storytimeline__imglink:hover { opacity: 0.92; }
+.storytimeline__cardimg {
   display: block;
   width: 100%;
   height: 100%;
@@ -1026,45 +1026,45 @@ a.person-row__name:hover {
 }
 
 /* TOP — magazine-cutline thumbnail spanning full card width above content */
-.storytimeline--mode-full .has-img-top .storytimeline__imglink {
+.has-img-top .storytimeline__imglink {
   margin: -0.55rem -0.7rem 0.55rem;
   border-radius: 2px 2px 0 0;
 }
-.storytimeline--mode-full .has-img-top .storytimeline__cardimg {
+.has-img-top .storytimeline__cardimg {
   height: 4.5rem;
 }
 
 /* LEFT — Polaroid-strip thumbnail filling the left edge of the card */
-.storytimeline--mode-full .has-img-left .storytimeline__card {
+.has-img-left .storytimeline__card {
   display: flex;
   gap: 0.7rem;
   padding-inline-start: 0;
 }
-.storytimeline--mode-full .has-img-left .storytimeline__imglink {
+.has-img-left .storytimeline__imglink {
   flex: 0 0 4rem;
   align-self: stretch;
   margin-block: -0.55rem;
   border-radius: 2px 0 0 2px;
 }
-.storytimeline--mode-full .has-img-left .storytimeline__cardbody {
+.has-img-left .storytimeline__cardbody {
   flex: 1 1 auto;
   min-width: 0;
 }
 
 /* RIGHT — same as left, mirrored */
-.storytimeline--mode-full .has-img-right .storytimeline__card {
+.has-img-right .storytimeline__card {
   display: flex;
   flex-direction: row-reverse;
   gap: 0.7rem;
   padding-inline-end: 0;
 }
-.storytimeline--mode-full .has-img-right .storytimeline__imglink {
+.has-img-right .storytimeline__imglink {
   flex: 0 0 4rem;
   align-self: stretch;
   margin-block: -0.55rem;
   border-radius: 0 2px 2px 0;
 }
-.storytimeline--mode-full .has-img-right .storytimeline__cardbody {
+.has-img-right .storytimeline__cardbody {
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -1184,24 +1184,15 @@ a.person-row__name:hover {
 
 /* ---- Foot "Sources" apparatus (§5.4.3) ----
    Hugo emits <section class="footnotes"> at the bottom of .Content.
-   We give it a heading and tighten the list rhythm. */
+   Posts provide their own `## Sources` heading in markdown right above
+   the footnote definitions; we just tighten the list rhythm here. */
 .post__body .footnotes {
-  margin-block-start: 3.5rem;
-  padding-block-start: 1.5rem;
+  margin-block-start: 1rem;
+  padding-block-start: 0.5rem;
   border-block-start: 1px solid var(--rule);
 }
 .post__body .footnotes hr {
   display: none; /* Hugo's default separator; we use a border instead */
-}
-.post__body .footnotes::before {
-  content: "Sources";
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 700;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  margin-block-end: 1em;
 }
 .post__body .footnotes ol {
   padding-inline-start: 1.25rem;
@@ -1679,3 +1670,14 @@ article.post .post__body {
   transition: color 0.2s ease;
 }
 .archives__entry-link:hover { color: var(--accent); }
+
+/* ---- Home page entry kicker ---- */
+.list__entry-kicker {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: 0.35rem;
+}
