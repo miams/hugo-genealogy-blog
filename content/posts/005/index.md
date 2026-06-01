@@ -1,19 +1,256 @@
 ---
-title: "Who was John Dorsey Iams (1921-1996)?"
+title: "Who was John Dorsey Iams?"
 date: 2026-05-30T08:00:00-04:00
-draft: true
+draft: false
 layout: heirloom
 lifespan: "1921 – 1996"
-tags: ["MIT", "World War II", "Radar", "Signal Corps", "CIA", "Foreign Service", "Camp Murphy", "Cold War"]
+hero: "/img/005/timeline/193x-xx-xx-03-1762-Iams-Family-Photo-d641b2.jpg"
+hero_alt: "The Iams family of Tulsa, ca. 1938 — Margaret seated at left, Jack standing centre, Donald (6) and Kathrine (14) at right"
+hero_caption: "The Iams family of Tulsa, ca. 1938. Margaret Shannon (Laubach) Iams at left, age 43; Jack standing centre, age 16, the year before he matriculated at MIT; brother Donald, age 6, and sister Kathrine, age 14, at right. Their father Jesse, a chemical engineer with Tulsa Oil, is the unseen photographer or out of frame."
+tags: ["MIT", "World War II", "Radar", "Signal Corps", "CIA", "Foreign Service", "Camp Murphy", "Cold War", "Tulsa"]
 categories: ["Who Was"]
 summary: "John Dorsey Iams graduated from MIT in 1942 with a Physics degree and a senior thesis on aircraft-cockpit precision instrumentation. He trained at the Army Signal Corps' top-secret radar school at Camp Murphy, Florida, served through the end of the war in occupied Germany, returned to MIT in 1945 for graduate work in international relations under Norman Padelford — and from there appears to have moved into a US Foreign Service / CIA career that surfaces, decades later, in a memo to DCI McCone, the CIA \"Family Jewels\" report, and a 487-page Foreign Service Institute paper on the Greek Communist Party."
-ShowWordCount: true
-ShowToc: true
-TocOpen: false
-ShowReadingTime: true
-params:
-  ShowBreadCrumbs: true
+relations:
+  parents:
+    - { name: "Jesse Dorsey Iams",             life: "1884–1973", role: "Father" }
+    - { name: "Margaret Shannon Laubach",      life: "1895–1991", role: "Mother" }
+  siblings:
+    - { name: "John Dorsey Iams",              life: "1921–1996", current: true }
+    - { name: "Kathrine Virginia Iams",        life: "1924–1998" }
+    - { name: "Donald Richard Iams",           life: "1932–2014" }
+  spouse:
+    { name: "Mary Lemmon",                     life: "1921–1981" }
+  marriage:
+    { date: "27 April 1943",                   place: "West Palm Beach, Florida" }
+  children:
+    - { name: "Jon Conklin Iams",              life: "1941–1988" }
+    - { name: "Barbara Diane Iams",            life: "1946–" }
+    - { name: "William Dorsey Iams",           life: "1953–2001" }
+    - { name: "Mary Alison Iams",              life: "1956–1963" }
+storytimeline:
+  - year: 1884
+    layer: family
+    kind: Birth
+    title: "Father Jesse Dorsey Iams born"
+    place: "Pittsburgh, Pa."
+    body:  "Jesse will become a chemical engineer for Gypsy Oil and an early Tulsa civic figure."
+  - year: 1895
+    layer: family
+    kind: Birth
+    title: "Mother Margaret Shannon Laubach born"
+    place: "Scranton, Pa."
+    body:  "Daughter of Dr. C.C. and Sarah Kathrine (Shannon) Laubach."
+    img:    "/img/005/timeline/Laubach-Margaret-Shannon-Iams-1885-1991-a311a9.png"
+    imgpos: left
+  - year: 1917
+    layer: family
+    kind: News
+    title: "Jesse Iams promoted at Gypsy Oil"
+    place: "Tulsa, Okla."
+    body:  "The Tulsa Daily World reports the promotion of J. D. Iams, two-time Tulsa tennis champion."
+  - year: 1920
+    layer: family
+    kind: Marriage
+    title: "Parents marry in Tulsa"
+    place: "Tulsa, Okla."
+    body:  "Jesse Dorsey Iams marries Margaret Shannon Laubach, 28 April 1920."
+  - year: 1921
+    layer: history
+    kind: Massacre
+    title: "Tulsa race massacre"
+    place: "Greenwood District, Tulsa"
+    body:  "31 May – 1 June. White mobs destroy Black Wall Street, killing as many as 300 and leaving thousands homeless. The Iams family was there."
+    img:    "/img/005/timeline/Tulsa-1536x1024-db112d.png"
+    imgpos: top
+  - year: 1921
+    age:  0
+    kind: Birth
+    title: "Born in Tulsa"
+    place: "Tulsa, Okla."
+    body:  "John Dorsey \"Jack\" Iams, eldest of three. The TimelineJS records the date as 30 December 1921; the RootsMagic database has 30 December 1920 — pending source verification."
+    img:    "/img/005/timeline/Jack-Dorsey-Iams-1921-1996-f6c7cb.png"
+    imgpos: top
+  - year: 1924
+    layer: family
+    kind: Birth
+    title: "Sister Kathrine Virginia born"
+    place: "Tulsa, Okla."
+  - year: 1932
+    layer: family
+    kind: Birth
+    title: "Brother Donald Richard born"
+    place: "Tulsa, Okla."
+  - year: 1938
+    age:  16
+    kind: Family
+    title: "Iams family portrait, Tulsa"
+    place: "Tulsa, Okla."
+    body:  "Family photograph — the year before Jack matriculates at MIT. Margaret (43), Donald (6), Jack (16), Kathrine (14)."
+  - year: 1938
+    age:  17
+    kind: Education
+    title: "Graduates Central High School"
+    place: "Tulsa, Okla."
+  - year: 1939
+    age:  17
+    kind: Athletics
+    title: "MIT freshman squash numerals"
+    body:  "Awarded numerals signifying competition on the freshman squash team — a competitive racquets background that would persist through his life."
+    img:    "/img/005/timeline/squash_life_09-c26d93.jpg"
+    imgpos: left
+  - year: 1940
+    age:  19
+    kind: Honor
+    title: "MIT Honor Roll, Class of 1942"
+    place: "Cambridge, Mass."
+  - year: 1941
+    age:  19
+    kind: Teaching
+    title: "Summer meteorology assistantship"
+    place: "Cambridge, Mass."
+    body:  "2 July. President Killian appoints Iams an assistant in MIT's wartime Special Meteorological Program — undergraduates rarely received such instructional appointments."
+    img:    "/img/005/documents/1941-meteorology-appointment.jpg"
+    imgpos: left
+  - year: 1941
+    age:  20
+    kind: Honor
+    title: "MIT Dean's List"
+    place: "Cambridge, Mass."
+    body:  "7 October. Top academic standing entering senior year."
+    img:    "/img/005/documents/1941-mit-deans-list.jpg"
+    imgpos: top
+  - year: 1942
+    age:  20
+    kind: Thesis
+    title: "B.S. Physics thesis submitted"
+    place: "Cambridge, Mass."
+    body:  "\"Temperature Errors in Pressure Capsules Designed for Precision Measurements,\" 10 April 1942. Aeronautical-instrument work in the NBS/NACA tradition."
+    img:    "/img/005/documents/1942-physics-thesis-cover.jpg"
+    imgpos: top
+  - year: 1942
+    age:  20
+    kind: Graduation
+    title: "Graduates MIT, accelerated for the war"
+    place: "Cambridge, Mass."
+    body:  "27 April. Bachelor of Science in Physics. Graduation ceremonies advanced a month so the class could enter wartime service."
+  - year: 1943
+    age:  21
+    kind: Marriage
+    title: "Marries Mary Lemmon"
+    place: "West Palm Beach, Fla."
+    body:  "27 April. The Palm Beach Post records the marriage during Jack's training at the Army Signal Corps radar school at Camp Murphy."
+  - year: 1943
+    age:  21
+    kind: War
+    title: "Army Signal Corps radar school"
+    place: "Camp Murphy, Hobe Sound, Fla."
+    body:  "Trains at the Signal Corps' top-secret radar school on the Florida Treasure Coast. Commissioned 2d Lieutenant; eventually 1st Lieutenant."
+  - year: 1945
+    age:  23
+    kind: Postwar
+    title: "Postwar Boston"
+    place: "Boston, Mass."
+    body:  "Returns to Cambridge for graduate study in international affairs under Norman J. Padelford. Christian Science Monitor places him in the city, 8 October."
+  - year: 1947
+    age:  25
+    kind: Career
+    title: "Joins US State Department"
+    body:  "Begins Foreign Service career; named in a Padelford-edited MIT publication that year for directing the drafting of two maps."
+  - year: 1947
+    age:  26
+    kind: Posting
+    title: "Athens political officer"
+    place: "Athens, Greece"
+    body:  "Posting in the wake of the Truman Doctrine — the Greek civil war is at its height."
+  - year: 1950
+    age:  28
+    kind: Travel
+    title: "Piraeus → New York"
+    place: "Piraeus to New York"
+    body:  "Returns from the Greek posting; promoted within the Foreign Service grade structure that April."
+    img:    "/img/005/documents/1950-piraeus-nyc.jpg"
+    imgpos: left
+  - year: 1953
+    age:  31
+    kind: Travel
+    title: "Naples → New York"
+    place: "Naples to New York"
+    img:    "/img/005/documents/1953-naples-nyc.jpg"
+    imgpos: left
+  - year: 1953
+    age:  31
+    kind: Posting
+    title: "Prague political-economics officer"
+    place: "Prague, Czechoslovakia"
+    body:  "Behind the Iron Curtain by year's end."
+  - year: 1957
+    age:  35
+    kind: CIA
+    title: "CIA Branch Chief — Greek/Turkish/Iranian"
+    place: "Washington, D.C."
+    body:  "Chief, Greek-Turkish-Iranian Branch, Office of Intelligence Research, Division for Near East, South Asia and Africa. Among the alliances on his desk: the Baghdad Pact / CENTO."
+    img:    "/img/005/timeline/2880px-Cento_zoom-431be0.png"
+    imgpos: top
+  - year: 1962
+    age:  40
+    kind: CIA
+    title: "Memo to DCI McCone"
+    place: "Washington, D.C."
+    body:  "10 July. Iams writes Director of Central Intelligence John McCone on the implementation of new policy concerning public release of technical surveillance countermeasures."
+    img:    "/img/005/documents/1962-mccone-memo.jpg"
+    imgpos: top
+  - year: 1963
+    age:  41
+    kind: Book
+    title: "Rebellion — the FSI book on the Greek Communist Party"
+    body:  "With Col. William C. Chamberlin, USMC. 487-page mimeographed study for the Foreign Service Institute's Fifth Senior Seminar in Foreign Policy. Declassified 1999."
+  - year: 1964
+    age:  42
+    kind: CIA
+    title: "Jacqueline Kennedy / Czechoslovakia letter (CIA file)"
+    body:  "Iams's name appears on page 9 of a CIA file concerning a Jacqueline Kennedy letter and Czechoslovakia."
+    img:    "/img/005/documents/1964-cia-czechoslovakia-letter.jpg"
+    imgpos: left
+  - year: 1973
+    age:  51
+    kind: CIA
+    title: "Director of Joint Computer Support, CIA"
+    place: "Langley, Va."
+  - year: 1973
+    age:  51
+    kind: CIA
+    title: "Family Jewels archive released"
+    place: "Langley, Va."
+    body:  "16 May. The internal CIA \"Family Jewels\" archive of Cold-War abuses is compiled. Iams's name appears in the file. Declassified June 2007."
+    img:    "/img/005/documents/1973-cia-family-jewels.jpg"
+    imgpos: top
+  - year: 1974
+    age:  52
+    kind: CIA
+    title: "Comptroller, Central Intelligence Agency"
+    place: "Langley, Va."
+  - year: 1976
+    age:  54
+    kind: CIA
+    title: "Special Assistant for SIGINT to the DCI"
+    body:  "Signals-intelligence policy role at the very top of the Agency."
+  - year: 1996
+    age:  74
+    kind: Death
+    title: "Died in Santa Fe"
+    place: "Santa Fe, N.Mex."
+    body:  "2 June. Buried under his Social-Security record of Massachusetts residency. Outlived by his third wife, Dania Merrill."
 ---
+
+{{< timeline >}}
+1921 | Born, Tulsa, Okla.
+1942 | MIT, B.S. Physics
+1943 | Camp Murphy, Fla.
+1947 | Athens posting, State Dept.
+1957 | CIA Branch Chief
+1973 | "Family Jewels" archive
+1996 | Died, Santa Fe
+{{< /timeline >}}
 
 ## MIT Education, Wartime Service, and the Path to a Foreign-Service / CIA Career
 
@@ -280,6 +517,8 @@ The reconstructed arc:
 17. **Correlate with CIA "Family Jewels" report.** The full Family Jewels document was declassified 2007; the family collection has the relevant pages but a full re-read against Iams's known posting timeline may yield additional context.
 
 ---
+
+{{< storytimeline >}}
 
 ## Source List
 
