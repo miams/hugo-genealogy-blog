@@ -1,13 +1,15 @@
 {{- $hero := .Params.hero -}}
 {{- $alt  := .Params.hero_alt | default .Title -}}
 {{- $cap  := .Params.hero_caption -}}
+{{- $pos  := .Params.hero_position -}}
 <figure class="hero">
   <img
     src="{{ $hero | absURL }}"
     alt="{{ $alt }}"
     loading="eager"
     decoding="async"
-    fetchpriority="high">
+    fetchpriority="high"
+    {{- with $pos }} style="object-position: {{ . | safeCSS }};"{{ end }}>
   {{- with $cap }}
   <figcaption class="hero__caption">{{ . | safeHTML }}</figcaption>
   {{- end }}

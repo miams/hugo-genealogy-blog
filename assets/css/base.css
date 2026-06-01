@@ -1801,3 +1801,97 @@ article.post .post__body {
   color: var(--accent);
   margin-block-end: 0.35rem;
 }
+
+/* ---- Spouse-children widget: per-marriage block ---- */
+.widget__marriage {
+  border-block-start: 1px solid var(--rule);
+  padding-block-start: 1rem;
+  margin-block-start: 1rem;
+}
+.widget__marriage:first-of-type {
+  border-block-start: 0;
+  padding-block-start: 0;
+  margin-block-start: 0;
+}
+
+/* ============================================================
+ * Storytimeline — improvements 48/49/50/53
+ *   #48 .storytimeline__rangebar  — horizontal end_year bar on track
+ *   #48 .storytimeline__minidot--range — range stripe on minimap
+ *   #49 (handled inline via style="background-…" on card)
+ *   #50 .storytimeline__group     — swim-lane badge
+ *   #53 .storytimeline__chapter.has-img-left — portrait image on left
+ * ============================================================ */
+
+/* Range bar on the main axis: an accent rule that spans year → end_year
+   along the timeline. Lives in the chapter's coordinate space and is
+   absolutely-positioned by the JS. */
+.storytimeline--interactive .storytimeline__rangebar {
+  display: none;
+  position: absolute;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--accent) 65%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="above"] .storytimeline__rangebar {
+  bottom: -2px;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="below"] .storytimeline__rangebar {
+  top: -2px;
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="family"]  .storytimeline__rangebar {
+  background: color-mix(in srgb, var(--soft) 65%, transparent);
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="history"] .storytimeline__rangebar {
+  background: color-mix(in srgb, var(--faint) 60%, transparent);
+}
+
+/* Minimap range dot: stretch into a horizontal stripe instead of a circle. */
+.storytimeline__minidot--range {
+  border-radius: 3px;
+  height: 6px;
+  margin-top: -3px;
+  background: color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+/* Group / swim-lane badge — small monospace pill beside the kind label. */
+.storytimeline__cardhead {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+.storytimeline__group {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--soft);
+  background: color-mix(in srgb, var(--accent-tint) 70%, transparent);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+}
+
+/* Auto image-position: portrait images sit on the left of the card. */
+.storytimeline--interactive .storytimeline__chapter.has-img-left .storytimeline__card {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.6rem;
+  align-items: start;
+}
+.storytimeline--interactive .storytimeline__chapter.has-img-left .storytimeline__imglink {
+  display: block;
+  width: 5.5rem;
+  height: 5.5rem;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.storytimeline--interactive .storytimeline__chapter.has-img-left .storytimeline__cardimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

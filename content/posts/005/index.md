@@ -3,10 +3,11 @@ title: "Who was John Dorsey Iams?"
 date: 2026-05-30T08:00:00-04:00
 draft: false
 layout: heirloom
-lifespan: "1921 – 1996"
+lifespan: "1920 – 1996"
 hero: "/img/005/timeline/193x-xx-xx-03-1762-Iams-Family-Photo-d641b2.jpg"
 hero_alt: "The Iams family of Tulsa, ca. 1938 — Margaret seated at left, Jack standing centre, Donald (6) and Kathrine (14) at right"
-hero_caption: "The Iams family of Tulsa, ca. 1938. Margaret Shannon (Laubach) Iams at left, age 43; Jack standing centre, age 16, the year before he matriculated at MIT; brother Donald, age 6, and sister Kathrine, age 14, at right. Their father Jesse, a chemical engineer with Tulsa Oil, is the unseen photographer or out of frame."
+hero_caption: "The Iams family of Tulsa, ca. 1938. Margaret Shannon (Laubach) Iams at left, age 43; Jack standing centre, age 17, in the year between Tulsa Central High and his MIT matriculation; brother Donald, age 6, and sister Kathrine, age 14, at right. Their father Jesse, a chemical engineer with Tulsa Oil, is the unseen photographer or out of frame."
+hero_position: "center 35%"
 tags: ["MIT", "World War II", "Radar", "Signal Corps", "CIA", "Foreign Service", "Camp Murphy", "Cold War", "Tulsa"]
 categories: ["Who Was"]
 summary: "John Dorsey Iams graduated from MIT in 1942 with a Physics degree and a senior thesis on aircraft-cockpit precision instrumentation. He trained at the Army Signal Corps' top-secret radar school at Camp Murphy, Florida, served through the end of the war in occupied Germany, returned to MIT in 1945 for graduate work in international relations under Norman Padelford — and from there appears to have moved into a US Foreign Service / CIA career that surfaces, decades later, in a memo to DCI McCone, the CIA \"Family Jewels\" report, and a 487-page Foreign Service Institute paper on the Greek Communist Party."
@@ -15,18 +16,24 @@ relations:
     - { name: "Jesse Dorsey Iams",             life: "1884–1973", role: "Father" }
     - { name: "Margaret Shannon Laubach",      life: "1895–1991", role: "Mother" }
   siblings:
-    - { name: "John Dorsey Iams",              life: "1921–1996", current: true }
+    - { name: "John Dorsey Iams",              life: "1920–1996", current: true }
     - { name: "Kathrine Virginia Iams",        life: "1924–1998" }
     - { name: "Donald Richard Iams",           life: "1932–2014" }
-  spouse:
-    { name: "Mary Lemmon",                     life: "1921–1981" }
-  marriage:
-    { date: "27 April 1943",                   place: "West Palm Beach, Florida" }
-  children:
-    - { name: "Jon Conklin Iams",              life: "1941–1988" }
-    - { name: "Barbara Diane Iams",            life: "1946–" }
-    - { name: "William Dorsey Iams",           life: "1953–2001" }
-    - { name: "Mary Alison Iams",              life: "1956–1963" }
+  marriages:
+    - spouse:   { name: "Barbara Conklin",     life: "?–1941" }
+      marriage: { date: "ca. 1940",            place: "?" }
+      end:      { date: "1941",                reason: "Barbara died young" }
+      children:
+        - { name: "Jon Conklin Iams",          life: "1941–1988" }
+    - spouse:   { name: "Mary Lemmon",         life: "1921–1981" }
+      marriage: { date: "27 April 1943",       place: "West Palm Beach, Florida" }
+      children:
+        - { name: "Barbara Diane Iams",        life: "1946–" }
+        - { name: "William Dorsey Iams",       life: "1953–2001" }
+        - { name: "Mary Alison Iams",          life: "1956–1963" }
+    - spouse:   { name: "Dania M. Merrill",    life: "1924–2011" }
+      marriage: { date: "after 1981",          place: "?" }
+      children: []
 storytimeline:
   - year: 1884
     layer: family
@@ -54,6 +61,14 @@ storytimeline:
     title: "Parents marry in Tulsa"
     place: "Tulsa, Okla."
     body:  "Jesse Dorsey Iams marries Margaret Shannon Laubach, 28 April 1920."
+  - year: 1920
+    age:  0
+    kind: Birth
+    title: "Born in Tulsa"
+    place: "Tulsa, Okla."
+    body:  "John Dorsey \"Jack\" Iams, eldest of three, 30 December 1920."
+    img:    "/img/005/timeline/Jack-Dorsey-Iams-1921-1996-f6c7cb.png"
+    imgpos: top
   - year: 1921
     layer: history
     kind: Massacre
@@ -61,14 +76,6 @@ storytimeline:
     place: "Greenwood District, Tulsa"
     body:  "31 May – 1 June. White mobs destroy Black Wall Street, killing as many as 300 and leaving thousands homeless. The Iams family was there."
     img:    "/img/005/timeline/Tulsa-1536x1024-db112d.png"
-    imgpos: top
-  - year: 1921
-    age:  0
-    kind: Birth
-    title: "Born in Tulsa"
-    place: "Tulsa, Okla."
-    body:  "John Dorsey \"Jack\" Iams, eldest of three. The TimelineJS records the date as 30 December 1921; the RootsMagic database has 30 December 1920 — pending source verification."
-    img:    "/img/005/timeline/Jack-Dorsey-Iams-1921-1996-f6c7cb.png"
     imgpos: top
   - year: 1924
     layer: family
@@ -81,18 +88,18 @@ storytimeline:
     title: "Brother Donald Richard born"
     place: "Tulsa, Okla."
   - year: 1938
-    age:  16
+    age:  17
     kind: Family
     title: "Iams family portrait, Tulsa"
     place: "Tulsa, Okla."
-    body:  "Family photograph — the year before Jack matriculates at MIT. Margaret (43), Donald (6), Jack (16), Kathrine (14)."
+    body:  "Family photograph — the year before Jack matriculates at MIT. Margaret (43), Donald (6), Jack (17), Kathrine (14)."
   - year: 1938
     age:  17
     kind: Education
     title: "Graduates Central High School"
     place: "Tulsa, Okla."
   - year: 1939
-    age:  17
+    age:  18
     kind: Athletics
     title: "MIT freshman squash numerals"
     body:  "Awarded numerals signifying competition on the freshman squash team — a competitive racquets background that would persist through his life."
@@ -104,7 +111,7 @@ storytimeline:
     title: "MIT Honor Roll, Class of 1942"
     place: "Cambridge, Mass."
   - year: 1941
-    age:  19
+    age:  20
     kind: Teaching
     title: "Summer meteorology assistantship"
     place: "Cambridge, Mass."
@@ -120,7 +127,7 @@ storytimeline:
     img:    "/img/005/documents/1941-mit-deans-list.jpg"
     imgpos: top
   - year: 1942
-    age:  20
+    age:  21
     kind: Thesis
     title: "B.S. Physics thesis submitted"
     place: "Cambridge, Mass."
@@ -128,42 +135,46 @@ storytimeline:
     img:    "/img/005/documents/1942-physics-thesis-cover.jpg"
     imgpos: top
   - year: 1942
-    age:  20
+    age:  21
     kind: Graduation
     title: "Graduates MIT, accelerated for the war"
     place: "Cambridge, Mass."
     body:  "27 April. Bachelor of Science in Physics. Graduation ceremonies advanced a month so the class could enter wartime service."
   - year: 1943
-    age:  21
+    age:  22
     kind: Marriage
     title: "Marries Mary Lemmon"
     place: "West Palm Beach, Fla."
     body:  "27 April. The Palm Beach Post records the marriage during Jack's training at the Army Signal Corps radar school at Camp Murphy."
   - year: 1943
-    age:  21
+    end_year: 1945
+    age:  22
     kind: War
+    group: "Wartime"
     title: "Army Signal Corps radar school"
     place: "Camp Murphy, Hobe Sound, Fla."
     body:  "Trains at the Signal Corps' top-secret radar school on the Florida Treasure Coast. Commissioned 2d Lieutenant; eventually 1st Lieutenant."
   - year: 1945
-    age:  23
+    age:  24
     kind: Postwar
     title: "Postwar Boston"
     place: "Boston, Mass."
     body:  "Returns to Cambridge for graduate study in international affairs under Norman J. Padelford. Christian Science Monitor places him in the city, 8 October."
   - year: 1947
-    age:  25
+    age:  26
     kind: Career
     title: "Joins US State Department"
     body:  "Begins Foreign Service career; named in a Padelford-edited MIT publication that year for directing the drafting of two maps."
   - year: 1947
+    end_year: 1950
     age:  26
     kind: Posting
+    group: "State Dept"
     title: "Athens political officer"
     place: "Athens, Greece"
     body:  "Posting in the wake of the Truman Doctrine — the Greek civil war is at its height."
   - year: 1950
-    age:  28
+    age:  29
     kind: Travel
     title: "Piraeus → New York"
     place: "Piraeus to New York"
@@ -171,28 +182,32 @@ storytimeline:
     img:    "/img/005/documents/1950-piraeus-nyc.jpg"
     imgpos: left
   - year: 1953
-    age:  31
+    age:  32
     kind: Travel
     title: "Naples → New York"
     place: "Naples to New York"
     img:    "/img/005/documents/1953-naples-nyc.jpg"
     imgpos: left
   - year: 1953
-    age:  31
+    end_year: 1957
+    age:  32
     kind: Posting
+    group: "State Dept"
     title: "Prague political-economics officer"
     place: "Prague, Czechoslovakia"
     body:  "Behind the Iron Curtain by year's end."
   - year: 1957
-    age:  35
+    end_year: 1962
+    age:  36
     kind: CIA
+    group: "Intelligence"
     title: "CIA Branch Chief — Greek/Turkish/Iranian"
     place: "Washington, D.C."
     body:  "Chief, Greek-Turkish-Iranian Branch, Office of Intelligence Research, Division for Near East, South Asia and Africa. Among the alliances on his desk: the Baghdad Pact / CENTO."
     img:    "/img/005/timeline/2880px-Cento_zoom-431be0.png"
     imgpos: top
   - year: 1962
-    age:  40
+    age:  41
     kind: CIA
     title: "Memo to DCI McCone"
     place: "Washington, D.C."
@@ -200,24 +215,26 @@ storytimeline:
     img:    "/img/005/documents/1962-mccone-memo.jpg"
     imgpos: top
   - year: 1963
-    age:  41
+    age:  42
     kind: Book
     title: "Rebellion — the FSI book on the Greek Communist Party"
     body:  "With Col. William C. Chamberlin, USMC. 487-page mimeographed study for the Foreign Service Institute's Fifth Senior Seminar in Foreign Policy. Declassified 1999."
   - year: 1964
-    age:  42
+    age:  43
     kind: CIA
     title: "Jacqueline Kennedy / Czechoslovakia letter (CIA file)"
     body:  "Iams's name appears on page 9 of a CIA file concerning a Jacqueline Kennedy letter and Czechoslovakia."
     img:    "/img/005/documents/1964-cia-czechoslovakia-letter.jpg"
     imgpos: left
   - year: 1973
-    age:  51
+    end_year: 1974
+    age:  52
     kind: CIA
+    group: "Intelligence"
     title: "Director of Joint Computer Support, CIA"
     place: "Langley, Va."
   - year: 1973
-    age:  51
+    age:  52
     kind: CIA
     title: "Family Jewels archive released"
     place: "Langley, Va."
@@ -225,17 +242,19 @@ storytimeline:
     img:    "/img/005/documents/1973-cia-family-jewels.jpg"
     imgpos: top
   - year: 1974
-    age:  52
+    end_year: 1976
+    age:  53
     kind: CIA
+    group: "Intelligence"
     title: "Comptroller, Central Intelligence Agency"
     place: "Langley, Va."
   - year: 1976
-    age:  54
+    age:  55
     kind: CIA
     title: "Special Assistant for SIGINT to the DCI"
     body:  "Signals-intelligence policy role at the very top of the Agency."
   - year: 1996
-    age:  74
+    age:  75
     kind: Death
     title: "Died in Santa Fe"
     place: "Santa Fe, N.Mex."
@@ -252,25 +271,21 @@ storytimeline:
 1996 | Died, Santa Fe
 {{< /timeline >}}
 
-## MIT Education, Wartime Service, and the Path to a Foreign-Service / CIA Career
+John Dorsey "Jack" Iams (b. 30 December 1920, d. 2 June 1996) is the family member whose adult life is least visible in the surviving record, and whose adult life made the longest journey out of Tulsa. He graduated from MIT in 1942 with a Bachelor of Science in Physics — accelerated for the war — and spent the next half-century in places that did not keep him in family photographs: Camp Murphy on the Florida Treasure Coast for radar training, the Greek civil-war front as a political officer in Athens, Cold-War Prague as a political-economics officer, and a Central Intelligence Agency career that surfaces, when it does, in a memo to DCI John McCone, in the Agency's own *Family Jewels* dossier, and in a 487-page Foreign Service Institute study of the Greek Communist Party.
 
-*Research synthesis compiled 26 May 2026 by Michael Iams, with Claude (Anthropic) assistance. All conclusions drawn from primary documents in the family collection plus open-source verification.*
-
----
-
-## Subject
-
-John Dorsey Iams (b. 1921, d. 1996). This synthesis combines primary documentary evidence with secondary research to reconstruct his MIT education (Course VIII Physics, 1938–1942), the summer-1941 teaching appointment in MIT's special meteorological program, the 1942 senior thesis on aeronautical precision instrumentation, his wartime US Army Signal Corps service at Camp Murphy (Florida) and apparently in occupied Germany, his postwar return to MIT for graduate work in international affairs under Norman J. Padelford, and the apparent transition into a US Foreign Service / Central Intelligence Agency career thereafter.
+*This synthesis was compiled in May 2026 from primary documents in the family collection plus open-source verification. The MIT-and-after material is heavier than the home-front material because that's what the archives held.*
 
 ---
 
-## I. Undergraduate Years at MIT, 1938–1942
+{{< plate src="/img/005/portraits/1937-tulsa-central-high-junior.png" n="1" align="right" caption="Jack Iams as a junior at Tulsa Central High School, 1937. The Central High yearbook portrait taken the year before he matriculated at MIT." credit="Tulsa Central High School yearbook, 1937" >}}
+
+## Undergraduate years at MIT, 1938–1942
 
 Iams was a four-year resident undergraduate at the Massachusetts Institute of Technology, graduating in June 1942 with the **Bachelor of Science in Physics**.[^thesis] His senior thesis is dated 10 April 1942 and was submitted to **Professor George W. Swett**, then Secretary of the Faculty and Professor of Machine Design.[^thesis-letter][^catalog-swett]
 
 The *MIT Bulletin, Catalogue Issue* for June 1941 — issued at the beginning of his senior year — documents the curriculum and faculty as he experienced them.[^catalog]
 
-### A. The Course VIII curriculum (Option 1: General Physics)
+### Course VIII curriculum (Option 1: General Physics)
 
 Course VIII offered two options, both leading to the BS in Physics. Option 1, *General Physics*, prepared students for graduate work in pure physics; Option 2, *Applied Physics*, required summer industrial work. Iams's July 1941 meteorology assistantship is consistent with Option 1 (which had no required summer placement), and his thesis topic suggests he was steered into the general track precisely so he could take the meteorology / instrumentation summer work as enrichment.[^catalog-course-viii]
 
@@ -330,7 +345,9 @@ The published four-year sequence Iams completed:[^catalog-course-viii]
 
 The course numbering "8.461 / 8.462 Introduction to Theoretical Physics" maps directly to the **Slater & Frank** textbook of the same title — written by Department Head John C. Slater and Nathaniel H. Frank, both then on the MIT faculty.[^slater-frank]
 
-### B. Senior thesis, April 1942: "Temperature Errors in Pressure Capsules Designed for Precision Measurements"
+{{< plate src="/img/005/documents/1942-physics-thesis-cover.jpg" n="2" align="left" caption="The cover page of Iams's senior thesis, *Temperature Errors in Pressure Capsules Designed for Precision Measurements*, submitted to Professor George W. Swett on 10 April 1942 — the work that closed his Course VIII Physics degree." credit="MIT Libraries, author's copy" >}}
+
+### Senior thesis, April 1942
 
 The thesis was submitted on 10 April 1942 to Professor Swett.[^thesis-letter] Its acknowledgments thank "Professor Walter McKay and Mr. D. P. Keily of the Aeronautical Engineering Department at M.I.T."[^thesis-ack] It is dedicated to **"Mary Grey Ballard, because she never had a dedication."**[^thesis-ded]
 
@@ -346,11 +363,11 @@ In short: Iams's "BS in Physics" senior thesis was a piece of operational war-in
 
 ---
 
-## II. The MIT Faculty Iams Encountered, 1938–1942
+## The MIT faculty he encountered
 
 The June 1941 *Bulletin* captures the institutional roster at the start of Iams's senior year.[^catalog] Among them are a remarkable concentration of figures who would shape mid-20th-century American physical science, engineering, and policy.
 
-### A. Physics Department (Course VIII)[^catalog-physics]
+### Physics Department (Course VIII)[^catalog-physics]
 
 The professors-in-residence during Iams's senior year — many of whom he encountered as direct instructors or examiners:
 
@@ -376,7 +393,7 @@ A research fellow in Physics worth noting:
 
 - **Isidor Fankuchen**, National Research Fellow — pioneer of biological X-ray crystallography.
 
-### B. Mathematics Department[^catalog-math]
+### Mathematics Department[^catalog-math]
 
 Iams's required mathematics sequence (M21 Calculus, M22 Differential Equations, M77 Vector Analysis) was taught by a department containing:
 
@@ -389,7 +406,7 @@ Iams's required mathematics sequence (M21 Calculus, M22 Differential Equations, 
 - **Prescott Durand Crout** — Assistant Professor; the Crout matrix decomposition bears his name.
 - **Frank Lauren Hitchcock** — Professor; the Hitchcock transportation problem in linear programming bears his name.
 
-### C. Meteorology Department[^catalog-meteorology]
+### Meteorology Department[^catalog-meteorology]
 
 The meteorology faculty Iams worked under during his July–October 1941 summer assistantship:
 
@@ -402,14 +419,14 @@ The meteorology faculty Iams worked under during his July–October 1941 summer 
 - **Jerome Namias (1910–1997)**, Research Associate (Absent in 1941–42) — one of the great American climatologists; later founded long-range forecasting at the Weather Bureau and led the Climate Research Group at Scripps.
 - **Thomas F. Malone (1917–2013)**, Research Assistant — later Director of the AMS and editor of the foundational *Compendium of Meteorology* (1951).
 
-### D. Adjacent departments and high-probability interactions
+### Adjacent departments
 
 - **Charles Stark "Doc" Draper (1901–1987)**, Associate Professor of Aeronautical Engineering — father of inertial navigation; the Apollo Guidance Computer is downstream of his work. Aeronautical Engineering was the home department of Iams's thesis acknowledgers; Draper was certainly known to Keily and McKay.
 - **Jerome C. Hunsaker (1886–1984)**, in charge of Mechanical Engineering — concurrently Chairman of NACA (1941–1956, predecessor agency to NASA). National Aviation Hall of Fame.
 - **Harold E. Edgerton (1903–1990)**, Associate Professor of Electrical Engineering — "Papa Flash," strobe-photography pioneer.
 - **Maria Telkes (1900–1995)**, Research Associate, Metallurgy — "The Sun Queen"; pioneer of solar energy conversion (designed the first solar-heated house, Dover House, 1948).
 
-### E. Top of the Institute
+### Top of the Institute
 
 - **Karl Taylor Compton (1887–1954)**, President — physicist; signed Iams's diploma; the office that produced the July 1941 letter.
 - **Vannevar Bush (1890–1974)** — listed on the MIT Corporation. Had left MIT's VP role in 1939 to direct the NDRC and OSRD; by 1941 he was coordinating all US wartime science.[^catalog-corp]
@@ -419,7 +436,9 @@ The meteorology faculty Iams worked under during his July–October 1941 summer 
 
 ---
 
-## III. The Summer 1941 Meteorology Assistantship
+{{< plate src="/img/005/documents/1941-meteorology-appointment.jpg" n="3" align="right" caption="President J. R. Killian Jr.'s letter of 2 July 1941 confirming Iams's appointment as assistant in MIT's wartime Special Meteorological Program. Undergraduates were rarely given instructional appointments." credit="MIT Office of the President records, AC-0004" >}}
+
+## The summer-1941 meteorology assistantship
 
 On 2 July 1941, between Iams's junior and senior years, James Rhyne Killian, Jr., issued two pieces of administrative correspondence formalizing Iams's appointment as a teaching assistant in MIT's "special meteorological program":
 
@@ -432,9 +451,9 @@ That Iams was placed as an assistant in the wartime cadet meteorology pipeline a
 
 ---
 
-## IV. Wartime Service, 1942–1945
+## Wartime service, 1942–1945
 
-### A. Camp Murphy, Florida (1943) — Signal Corps radar training
+### Camp Murphy, Florida — Signal Corps radar training, 1943
 
 The *Palm Beach Post* of 27 April 1943 announced Iams's marriage to a woman of the Lemmon family in West Palm Beach, recording his residence as **Camp Murphy**.[^marriage]
 
@@ -444,7 +463,7 @@ That Iams was at Camp Murphy in April 1943 is not coincidental. The combination 
 
 The family understanding — that John D. Iams was an expert in radio technology during his CIA career — is fully consistent with the Camp Murphy origin. The CIA's technical-operations directorate drew heavily on Signal Corps officers with wartime radar/radio training; Iams's MIT-physics-to-radar pipeline is a textbook case of that recruitment pattern.
 
-### B. Discharge and the German artifacts, October 1945
+### Discharge and the German artifacts, October 1945
 
 The *Christian Science Monitor* of 8 October 1945 reported a Boston car break-in suffered by **Lieut. John D. Iams**, "recently discharged from the Army and now a graduate student at Massachusetts Institute of Technology." The stolen items were valued at approximately $4,500 (~$80,000 in 2026 dollars) and comprised:[^csm-1945]
 
@@ -459,7 +478,7 @@ The explicit attribution that the jewelry was German-made and "which Lieut. Iams
 
 ---
 
-## V. Postwar Graduate Study at MIT, ~1945–1947
+## Postwar graduate study at MIT, 1945–1947
 
 The same October 1945 newspaper item identifies Iams immediately on discharge as a **graduate student at MIT**.[^csm-1945]
 
@@ -480,7 +499,9 @@ A secondary hypothesis — that his MIT graduate paper became the basis of the 1
 
 ---
 
-## VI. Foreign Service / CIA Career
+{{< plate src="/img/005/portraits/john-dorsey-iams-portrait.png" n="4" align="right" caption="John Dorsey Iams, c. 1960s. The portrait taken from the *State Department Biographic Register* and used on internal Agency rolls." credit="State Department / family collection" >}}
+
+## Foreign Service and CIA career
 
 Subsequent documents in the family collection trace Iams's career arc:
 
@@ -496,7 +517,7 @@ The reconstructed arc:
 
 ---
 
-## VII. Research Avenues to Pursue
+## Research avenues to pursue
 
 1. **Identify the senior thesis advisor.** The "Instructor in Charge of Thesis" signature is redacted in the digital reproduction. The acknowledgments name **Professor Walter McKay** and **Mr. D. P. Keily** of the Aeronautical Engineering Department. Walter McKay is the likely advisor; verify his title and affiliation in the *MIT Bulletin* directory of officers for 1941–42 (Aeronautical Engineering faculty listing). An unredacted thesis title page from MIT Distinctive Collections would settle this directly.
 2. **Locate the MIT graduate thesis (1945–47).** The October 1945 newspaper article and the 1947 Padelford reader together establish Iams as an MIT graduate student during this window. The thesis has not yet been located. Request the catalog record from MIT Distinctive Collections; if absent, consider FOIA requests to State and CIA for any classified MIT-period work product.
@@ -517,6 +538,10 @@ The reconstructed arc:
 17. **Correlate with CIA "Family Jewels" report.** The full Family Jewels document was declassified 2007; the family collection has the relevant pages but a full re-read against Iams's known posting timeline may yield additional context.
 
 ---
+
+{{< plate src="/img/005/documents/1962-mccone-memo.jpg" n="5" align="left" caption="First page of Iams's 10 July 1962 memorandum to Director of Central Intelligence John A. McCone, concerning 'Implementation of New Policy Regarding Public Release of Technical Surveillance Counter Measures.' Declassified." credit="CIA / family collection" >}}
+
+{{< plate src="/img/005/documents/1973-cia-family-jewels.jpg" n="6" align="right" caption="Page from the CIA's internal *Family Jewels* archive of Cold-War programs, 16 May 1973. Iams is named in the file. Declassified June 2007." credit="CIA / family collection" >}}
 
 {{< storytimeline >}}
 

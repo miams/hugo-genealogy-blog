@@ -7,28 +7,34 @@
   Front-matter shape:
     storytimeline:
       - year: 1858
+        end_year: 1861        # optional — renders a horizontal range bar
         age: 0
         kind: Birth
         title: "Born in Charles Town"
         place: "Jefferson County, Va."
         body: "Fifth of nine children…"
+        img: /img/.../foo.jpg # optional — auto-aspect (portrait→left, else top)
+        imgpos: top|left      # optional override
+        group: "Education"    # optional — small swim-lane badge
+        background: "#f0e2d3" # optional — hex card tint OR URL backdrop
 */ -}}
 {{- $items := .Page.Params.storytimeline -}}
 {{- if $items -}}
 
-{{- /* Compute decade bounds for the axis. */ -}}
+{{- /* Compute decade bounds for the axis. end_year expands the maxima. */ -}}
 {{- $allMin := 9999 -}}
 {{- $allMax := 0 -}}
 {{- /* Subject-only bounds drive fit-lifespan + anchor detection. */ -}}
 {{- $subjMin := 9999 -}}
 {{- $subjMax := 0 -}}
 {{- range $items -}}
+  {{- $yEnd := .end_year | default .year -}}
   {{- if lt .year $allMin }}{{ $allMin = .year }}{{ end -}}
-  {{- if gt .year $allMax }}{{ $allMax = .year }}{{ end -}}
+  {{- if gt $yEnd $allMax }}{{ $allMax = $yEnd }}{{ end -}}
   {{- $layer := .layer | default "subject" -}}
   {{- if eq $layer "subject" -}}
     {{- if lt .year $subjMin }}{{ $subjMin = .year }}{{ end -}}
-    {{- if gt .year $subjMax }}{{ $subjMax = .year }}{{ end -}}
+    {{- if gt $yEnd $subjMax }}{{ $subjMax = $yEnd }}{{ end -}}
   {{- end -}}
 {{- end -}}
 {{- if eq $subjMin 9999 }}{{ $subjMin = $allMin }}{{ end -}}
@@ -59,18 +65,74 @@
 
       <ol class="storytimeline__chapters">
         {{- range $i, $item := $items }}
-        {{- $layer := $item.layer | default "subject" -}}
-        {{- $imgpos := $item.imgpos | default "top" -}}
+        {{- $layer   := $item.layer | default "subject" -}}
+        {{- $endYear := $item.end_year | default 0 -}}
+        {{- $hasRange := and $endYear (gt $endYear $item.year) -}}
+
+        {{- /* Auto image-position by aspect ratio (improvement #53).
+               If the author didn't set imgpos and the image lives under
+               static/, infer: portrait → "left", landscape/square → "top".
+               Falls back to "top" if imageConfig can't read the file. */ -}}
+        {{- $imgpos := $item.imgpos -}}
+        {{- if and $item.img (not $imgpos) -}}
+          {{- $imgPath := printf "static%s" (string $item.img) -}}
+          {{- with try (imageConfig $imgPath) -}}
+            {{- if .Err -}}
+              {{- $imgpos = "top" -}}
+            {{- else -}}
+              {{- $cfg := .Value -}}
+              {{- if and $cfg.Width $cfg.Height -}}
+                {{- if gt (mul $cfg.Height 100) (mul $cfg.Width 115) -}}
+                  {{- $imgpos = "left" -}}
+                {{- else -}}
+                  {{- $imgpos = "top" -}}
+                {{- end -}}
+              {{- else -}}
+                {{- $imgpos = "top" -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $imgpos = $imgpos | default "top" -}}
+
         {{- $imgClass := "" -}}
         {{- if $item.img }}{{ $imgClass = print " has-img has-img-" $imgpos }}{{ end -}}
-        <li class="storytimeline__chapter{{ $imgClass }}"
+
+        {{- /* Background: hex string → card tint; URL → backdrop image */ -}}
+        {{- $bgColor := "" -}}
+        {{- $bgImage := "" -}}
+        {{- with $item.background -}}
+          {{- $s := . -}}
+          {{- if hasPrefix $s "#" -}}
+            {{- $bgColor = $s -}}
+          {{- else if or (hasPrefix $s "http") (hasPrefix $s "/") -}}
+            {{- $bgImage = $s -}}
+          {{- end -}}
+        {{- end -}}
+
+        {{- $rangeClass := "" -}}
+        {{- if $hasRange }}{{ $rangeClass = " storytimeline__chapter--range" }}{{ end -}}
+
+        <li class="storytimeline__chapter{{ $imgClass }}{{ $rangeClass }}"
             data-year="{{ $item.year }}"
+            {{- if $hasRange }} data-end-year="{{ $endYear }}"{{ end }}
             data-index="{{ $i }}"
             data-side="{{ if eq (mod $i 2) 0 }}above{{ else }}below{{ end }}"
-            data-layer="{{ $layer }}">
+            data-layer="{{ $layer }}"
+            {{- with $item.group }} data-group="{{ . }}"{{ end }}>
           <span class="storytimeline__dot" aria-hidden="true"></span>
-          <span class="storytimeline__yearlabel" aria-hidden="true">{{ $item.year }}</span>
-          <div class="storytimeline__card">
+          {{- if $hasRange }}
+          <span class="storytimeline__rangebar" aria-hidden="true"></span>
+          {{- end }}
+          <span class="storytimeline__yearlabel" aria-hidden="true">
+            {{- $item.year -}}
+            {{- if $hasRange }}&ndash;{{ $endYear }}{{ end -}}
+          </span>
+          <div class="storytimeline__card"
+               {{- if or $bgColor $bgImage }} style="
+                 {{- with $bgColor -}}background-color: {{ . | safeCSS }};{{- end -}}
+                 {{- with $bgImage -}}background-image: linear-gradient(rgba(251,248,242,.85), rgba(251,248,242,.85)), url('{{ . | safeURL }}'); background-size: cover; background-position: center;{{- end -}}
+               "{{- end }}>
             {{- with $item.img }}
             <a class="storytimeline__imglink" href="{{ . | safeURL }}" data-lightbox
                data-caption="{{ $item.title }}" data-alt="{{ $item.title }}"
@@ -79,10 +141,18 @@
             </a>
             {{- end }}
             <div class="storytimeline__cardbody">
-              {{- with $item.kind }}<span class="storytimeline__kind">{{ . }}</span>{{ end }}
+              {{- if or $item.kind $item.group }}
+              <div class="storytimeline__cardhead">
+                {{- with $item.kind }}<span class="storytimeline__kind">{{ . }}</span>{{ end }}
+                {{- with $item.group }}<span class="storytimeline__group">{{ . }}</span>{{ end }}
+              </div>
+              {{- end }}
               <h4 class="storytimeline__title">{{ $item.title }}</h4>
               <p class="storytimeline__meta">
-                <span class="storytimeline__year">{{ $item.year }}</span>
+                <span class="storytimeline__year">
+                  {{- $item.year -}}
+                  {{- if $hasRange }}&ndash;{{ $endYear }}{{ end -}}
+                </span>
                 {{- with $item.age }} · <span class="storytimeline__age">age {{ . }}</span>{{ end -}}
                 {{- with $item.place }} · <span class="storytimeline__place">{{ . }}</span>{{ end -}}
               </p>
@@ -99,11 +169,15 @@
   <div class="storytimeline__minimap" hidden>
     <div class="storytimeline__minitrack">
       {{- range $i, $item := $items }}
-      <span class="storytimeline__minidot"
+      {{- $endYear := $item.end_year | default 0 -}}
+      {{- $hasRange := and $endYear (gt $endYear $item.year) -}}
+      <span class="storytimeline__minidot{{ if $hasRange }} storytimeline__minidot--range{{ end }}"
             data-year="{{ $item.year }}"
+            {{- if $hasRange }} data-end-year="{{ $endYear }}"{{ end }}
             data-layer="{{ $item.layer | default "subject" }}"
             data-index="{{ $i }}"
             data-title="{{ $item.title }}"
+            {{- with $item.img }} data-img="{{ . | safeURL }}"{{ end }}
             aria-label="{{ $item.year }} — {{ $item.title }}"></span>
       {{- end }}
       <div class="storytimeline__bracket" aria-label="Current viewport — drag to pan"></div>

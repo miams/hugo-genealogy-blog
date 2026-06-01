@@ -87,11 +87,50 @@
         var y = parseInt(t.dataset.year, 10);
         t.style.left = yearToX(y) + "px";
       });
+
+      // First pass: compute base x for each chapter and bucket by (side, year)
+      // so we can micro-offset chapters sharing the same year (improvement #51).
+      var sameYearBuckets = {};
       chapters.forEach(function (ch) {
         var y = parseInt(ch.dataset.year, 10);
-        var cardW = parseFloat(getComputedStyle(ch).width) || 176;
-        ch.style.left = (yearToX(y) - cardW / 2) + "px";
+        var key = ch.dataset.side + ":" + y;
+        (sameYearBuckets[key] = sameYearBuckets[key] || []).push(ch);
       });
+
+      chapters.forEach(function (ch) {
+        var y = parseInt(ch.dataset.year, 10);
+        var endY = parseInt(ch.dataset.endYear, 10);
+        var cardW = parseFloat(getComputedStyle(ch).width) || 176;
+        // Same-year offset: spread chapters that share a year on the same side
+        // horizontally so they don't stack identically. Limit to ~26 px each
+        // way so cards still hug the right year visually.
+        var key = ch.dataset.side + ":" + y;
+        var bucket = sameYearBuckets[key];
+        var offset = 0;
+        if (bucket && bucket.length > 1) {
+          var idx = bucket.indexOf(ch);
+          var spread = Math.min(26, (pxPerYear * 0.45));
+          offset = (idx - (bucket.length - 1) / 2) * spread;
+        }
+        ch.style.left = (yearToX(y) - cardW / 2 + offset) + "px";
+
+        // Range bar (improvement #48): position from year → end_year along the axis.
+        var bar = ch.querySelector(".storytimeline__rangebar");
+        if (bar) {
+          if (endY && endY > y) {
+            var startX = yearToX(y);
+            var endX   = yearToX(endY);
+            bar.style.display = "block";
+            // bar lives in the chapter's coordinate space, so subtract ch.left
+            // (which equals yearToX(y) - cardW/2 + offset).
+            bar.style.left  = (cardW / 2 - offset) + "px";
+            bar.style.width = Math.max(2, endX - startX) + "px";
+          } else {
+            bar.style.display = "none";
+          }
+        }
+      });
+
       positionMinidots();
       updateBracket();
       avoidLabelCollision();
@@ -138,7 +177,12 @@
       if (!mw || !span) return;
       minidots.forEach(function (d) {
         var y = parseInt(d.dataset.year, 10);
+        var endY = parseInt(d.dataset.endYear, 10);
         d.style.left = ((y - minYear) / span * mw) + "px";
+        if (endY && endY > y) {
+          // Stretch the dot into a range-bar across the minimap span.
+          d.style.width = Math.max(4, ((endY - y) / span) * mw) + "px";
+        }
       });
     }
 
@@ -318,6 +362,18 @@
 
       // Hover tooltip — preview a chapter before clicking. Lets the reader
       // survey the timeline at-a-glance.
+      // Hover also prefetches the full-size lightbox image (improvement #54)
+      // so the lightbox feels instant when the reader clicks through.
+      var prefetched = Object.create(null);
+      function prefetchImg(url) {
+        if (!url || prefetched[url]) return;
+        prefetched[url] = true;
+        var link = document.createElement("link");
+        link.rel  = "prefetch";
+        link.as   = "image";
+        link.href = url;
+        document.head.appendChild(link);
+      }
       if (minitip) {
         function showTip(dot) {
           minitipY.textContent = dot.dataset.year || "";
@@ -327,6 +383,7 @@
           var dotRect = dot.getBoundingClientRect();
           var mmRect  = minimap.getBoundingClientRect();
           minitip.style.left = (dotRect.left + dotRect.width / 2 - mmRect.left) + "px";
+          if (dot.dataset.img) prefetchImg(dot.dataset.img);
         }
         function hideTip() { minitip.hidden = true; }
         minidots.forEach(function (dot) {
@@ -336,6 +393,12 @@
           dot.addEventListener("blur", hideTip);
         });
         minimap.addEventListener("mouseleave", hideTip);
+      } else {
+        // Even without a tooltip, the prefetch is still useful on bare dots.
+        minidots.forEach(function (dot) {
+          dot.addEventListener("mouseenter", function () { prefetchImg(dot.dataset.img); });
+          dot.addEventListener("focus",      function () { prefetchImg(dot.dataset.img); });
+        });
       }
 
       // Click on minimap background (not bracket, not minidot) — jump to year

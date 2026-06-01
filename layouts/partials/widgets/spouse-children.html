@@ -1,48 +1,78 @@
 {{- /*
-  spouse-children widget (CLAUDE.md §5.6).
-  Spouse row + a "Married — date · place" divider + Children list. Each
-  person is a PersonRow. Renders nothing if no spouse and no children.
+  spouse-children widget — CLAUDE.md §5.6.
 
-  Front-matter shape:
-    relations:
-      spouse:   { name: "…", life: "…", ref: "…" }
-      marriage: { date: "…", place: "…" }
-      children: [ { name: "…", life: "…" }, … ]
+  Supports two front-matter shapes:
+
+    (a) Single marriage (legacy / common):
+        relations:
+          spouse:   { name, life, ref? }
+          marriage: { date, place }
+          children: [ { name, life, ref? }, … ]
+
+    (b) Multiple marriages — chronological list:
+        relations:
+          marriages:
+            - { spouse: { name, life }, marriage: { date, place },
+                end: { date?, reason? }, children: [ { … } ] }
+            - { spouse: { … }, … }
+
+  When (b) is used the widget renders one block per marriage with a
+  small date divider; the "current" marriage (where end is absent or
+  end.reason = "ongoing") is rendered with a subtle accent border.
 */ -}}
 {{- $r := .Params.relations -}}
 {{- if $r -}}
-{{- $spouse   := $r.spouse -}}
-{{- $marriage := $r.marriage -}}
-{{- $children := $r.children -}}
-{{- if or $spouse $children -}}
+{{- /* Build a unified list of marriages from both shapes. */ -}}
+{{- $marriages := slice -}}
+{{- with $r.marriages -}}
+  {{- range . -}}
+    {{- $marriages = $marriages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (not $marriages) (or $r.spouse $r.children) -}}
+  {{- $m := dict
+      "spouse"   $r.spouse
+      "marriage" $r.marriage
+      "children" $r.children -}}
+  {{- $marriages = $marriages | append $m -}}
+{{- end -}}
 
+{{- if $marriages -}}
 <section class="widget widget--spouse-children" aria-labelledby="sc-heading">
-  <h3 id="sc-heading" class="widget__heading">Spouse &amp; Children</h3>
+  <h3 id="sc-heading" class="widget__heading">Spouses &amp; Children</h3>
 
-  {{- with $spouse }}
-  <div class="widget__group">
+  {{- range $i, $m := $marriages }}
+  {{- $isLast := eq $i (sub (len $marriages) 1) -}}
+  <div class="widget__marriage{{ if $isLast }} widget__marriage--last{{ end }}">
+
+    {{- with $m.spouse }}
     {{ partial "widgets/person-row.html" (dict "name" .name "life" .life "role" "Spouse") }}
-  </div>
-  {{- end }}
-
-  {{- with $marriage }}
-  <p class="widget__divider">
-    Married
-    {{- with .date }} {{ . }}{{ end -}}
-    {{- if and .date .place }} · {{ end -}}
-    {{- with .place }}{{ . }}{{ end -}}
-  </p>
-  {{- end }}
-
-  {{- with $children }}
-  <div class="widget__group widget__group--children">
-    <h4 class="widget__subheading">Children ({{ len . }})</h4>
-    {{- range . }}
-    {{ partial "widgets/person-row.html" . }}
     {{- end }}
+
+    {{- with $m.marriage }}
+    <p class="widget__divider">
+      Married
+      {{- with .date }} {{ . }}{{ end -}}
+      {{- if and .date .place }} · {{ end -}}
+      {{- with .place }}{{ . }}{{ end -}}
+      {{- with $m.end }}
+        {{- with .date }} · ended {{ . }}{{ end -}}
+        {{- with .reason }} ({{ . }}){{ end -}}
+      {{- end -}}
+    </p>
+    {{- end }}
+
+    {{- with $m.children }}
+    <div class="widget__group widget__group--children">
+      <h4 class="widget__subheading">Children ({{ len . }})</h4>
+      {{- range . }}
+      {{ partial "widgets/person-row.html" . }}
+      {{- end }}
+    </div>
+    {{- end }}
+
   </div>
   {{- end }}
 </section>
-
 {{- end -}}
 {{- end -}}
