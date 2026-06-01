@@ -2,6 +2,7 @@
 title: "New website features"
 date: 2025-03-10T20:51:02-05:00
 draft: false
+layout: heirloom
 tags: [""]
 categories: ["technology"]
 summary: "Introducing DataTables and improved image display capability"

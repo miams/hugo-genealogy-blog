@@ -2,6 +2,8 @@
 title: "Summary of the will of William Burgess (1622-1686)"
 date: 2025-03-16T06:51:02-05:00
 draft: false
+layout: heirloom
+lifespan: "1622 – 1686"
 tags: ["Early Anne Arundel Settlers"]
 categories: ["Source Analysis"]
 summary: "The will of William Burgess is preserved at the National Archives in London, one of only two wills from Anne Arundel colonists found in the English archives. With the assistance of ChatGPT, we transcribe and analyze this will to uncover insights into the life of William Burgess and, by extension, William Iiams."

@@ -2,6 +2,8 @@
 title: "Who was John Dorsey Iams (1921-1996)?"
 date: 2026-05-30T08:00:00-04:00
 draft: true
+layout: heirloom
+lifespan: "1921 – 1996"
 tags: ["MIT", "World War II", "Radar", "Signal Corps", "CIA", "Foreign Service", "Camp Murphy", "Cold War"]
 categories: ["Who Was"]
 summary: "John Dorsey Iams graduated from MIT in 1942 with a Physics degree and a senior thesis on aircraft-cockpit precision instrumentation. He trained at the Army Signal Corps' top-secret radar school at Camp Murphy, Florida, served through the end of the war in occupied Germany, returned to MIT in 1945 for graduate work in international relations under Norman Padelford — and from there appears to have moved into a US Foreign Service / CIA career that surfaces, decades later, in a memo to DCI McCone, the CIA \"Family Jewels\" report, and a 487-page Foreign Service Institute paper on the Greek Communist Party."
