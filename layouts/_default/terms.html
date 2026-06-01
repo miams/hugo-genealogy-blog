@@ -1,0 +1,24 @@
+{{ define "main" }}
+<article class="terms">
+
+  <header class="title-band">
+    <div class="title-band__inner">
+      <h1>{{ .Title }}</h1>
+    </div>
+  </header>
+
+  <div class="terms__content">
+    <ul class="term-chips">
+      {{- range .Data.Terms.Alphabetical }}
+      <li>
+        <a class="term-chip" href="{{ .Page.RelPermalink }}">
+          <span class="term-chip__name">{{ .Page.Title }}</span>
+          <span class="term-chip__count">{{ .Count }}</span>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+
+</article>
+{{ end }}

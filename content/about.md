@@ -1,3 +1,8 @@
+---
+title: "About"
+url: "/about/"
+---
+
 The history we learn is written through the lens of the rich, famous and powerful. Unfortunately, these people are only partially relateable. They may 
 
 But there is another, more compeling view of history, seen through the rich tapestry of the lives of everyday common people. The challenge with telling this story is the facts are scarce and hard to uncover. 

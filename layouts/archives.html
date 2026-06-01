@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="archives">
+
+  <header class="title-band">
+    <div class="title-band__inner">
+      <h1>{{ .Title | default "Archives" }}</h1>
+    </div>
+  </header>
+
+  <div class="archives__content">
+    {{- $pages := where (where site.RegularPages "Type" "in" site.Params.mainSections) "Params.hidden" "!=" true -}}
+    {{- range $pages.GroupByDate "2006" }}
+    <section class="archives__year">
+      <h2 class="archives__year-heading">{{ .Key }}</h2>
+      <ul class="archives__year-list">
+        {{- range .Pages }}
+        <li class="archives__entry">
+          <time class="archives__entry-date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "January 2" }}
+          </time>
+          <a class="archives__entry-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{- end }}
+      </ul>
+    </section>
+    {{- end }}
+  </div>
+
+</article>
+{{ end }}

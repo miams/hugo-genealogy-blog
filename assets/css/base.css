@@ -1535,3 +1535,147 @@ article.post .post__body {
   font-size: var(--step-1);
   letter-spacing: 0.02em;
 }
+
+/* =============================================================
+   Aux pages — list (sections + taxonomies), terms, archives
+   ============================================================= */
+
+/* ---- List page (taxonomy term page, post section list) ---- */
+.list__content {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) 1.25rem;
+}
+.list__intro {
+  margin-block-end: 2rem;
+}
+.list__entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+.list__entry {
+  border-block-end: 1px solid var(--rule);
+  padding-block-end: 1.5rem;
+}
+.list__entry:last-child { border-block-end: none; }
+.list__entry-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.list__entry-link:hover .list__entry-title { color: var(--accent); }
+.list__entry-title {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  line-height: 1.15;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.list__entry-lifespan {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--soft);
+  margin: 0 0 0.25rem;
+}
+.list__entry-meta {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--soft);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 0.65rem;
+}
+.list__entry-summary {
+  font-family: var(--font-text);
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ---- Terms page (Categories / Tags landing) ---- */
+.terms__content {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) 1.25rem;
+}
+.term-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.term-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  background: color-mix(in srgb, var(--accent-tint) 60%, transparent);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--font-text);
+  transition: border-color 0.2s ease;
+}
+.term-chip:hover { border-color: var(--accent); }
+.term-chip__name {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+}
+.term-chip__count {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+}
+
+/* ---- Archives page ---- */
+.archives__content {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) 1.25rem;
+}
+.archives__year {
+  margin-block-end: 2.5rem;
+}
+.archives__year-heading {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  color: var(--accent);
+  border-block-end: 1px solid var(--rule);
+  padding-block-end: 0.4rem;
+  margin: 0 0 1rem;
+}
+.archives__year-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.archives__entry {
+  display: flex;
+  gap: 1.2rem;
+  align-items: baseline;
+  padding-block: 0.45rem;
+}
+.archives__entry-date {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--soft);
+  letter-spacing: 0.05em;
+  min-width: 6.5rem;
+  text-transform: uppercase;
+}
+.archives__entry-link {
+  font-family: var(--font-display);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: var(--step-0);
+  transition: color 0.2s ease;
+}
+.archives__entry-link:hover { color: var(--accent); }

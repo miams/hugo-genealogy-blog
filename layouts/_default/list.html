@@ -1,0 +1,40 @@
+{{ define "main" }}
+<article class="list">
+
+  <header class="title-band">
+    <div class="title-band__inner">
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}
+      <p class="title-band__meta">{{ . | safeHTML }}</p>
+      {{- end }}
+    </div>
+  </header>
+
+  <div class="list__content">
+    {{- if .Content }}
+    <div class="prose list__intro">{{ .Content }}</div>
+    {{- end }}
+
+    <ul class="list__entries">
+      {{- range .Pages.ByDate.Reverse }}
+      <li class="list__entry">
+        <a class="list__entry-link" href="{{ .RelPermalink }}">
+          <h2 class="list__entry-title">{{ .Title }}</h2>
+          {{- with .Params.lifespan }}
+          <p class="list__entry-lifespan">{{ . | safeHTML }}</p>
+          {{- end }}
+          <p class="list__entry-meta">
+            {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end -}}
+            {{- if .ReadingTime }} · {{ .ReadingTime }} min read{{ end -}}
+          </p>
+          {{- with .Description | default .Params.summary | default .Summary }}
+          <p class="list__entry-summary">{{ . | plainify | truncate 240 }}</p>
+          {{- end }}
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+
+</article>
+{{ end }}
