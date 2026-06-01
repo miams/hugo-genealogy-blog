@@ -201,6 +201,122 @@ div.dt-container { margin-block: 1.5em; }
 div.dt-container > div.dt-layout-row:empty { display: none; }
 table.dataTable { margin-block: 0; }
 
+/* ---- DataTables 2.x layout: length-dropdown left, search right;
+   info left, pagination right. The "row" wrapper is a bare <div> with
+   no class, so we target direct children of .dt-container. The middle
+   row wraps the table in dt-layout-full; the top/bottom rows hold
+   dt-layout-start and dt-layout-end. ---- */
+div.dt-container > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 0.6em;
+}
+div.dt-container > div > div.dt-layout-start {
+  flex: 0 1 auto;
+  margin-inline-end: auto;
+}
+div.dt-container > div > div.dt-layout-end {
+  flex: 0 1 auto;
+  margin-inline-start: auto;
+}
+div.dt-container > div > div.dt-layout-full {
+  flex: 1 1 100%;
+}
+/* dt-autosize is a hidden helper element — keep it out of the flow */
+div.dt-container > div.dt-autosize { display: none; }
+
+/* Length dropdown (entries per page) */
+div.dt-length {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--soft);
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+div.dt-length select {
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.15rem 0.4rem;
+}
+
+/* Search box */
+div.dt-search {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--soft);
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+div.dt-search input {
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.2rem 0.55rem;
+  min-width: 14rem;
+}
+
+/* Info ("Showing X to Y of N entries") */
+div.dt-info {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--soft);
+  letter-spacing: 0.04em;
+}
+
+/* Pagination: inline row of buttons, accent on the active page */
+div.dt-paging {
+  display: flex;
+  justify-content: flex-end;
+}
+div.dt-paging ul,
+div.dt-paging ul.dt-paging-buttons {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+}
+div.dt-paging ul li { margin: 0; padding: 0; }
+div.dt-paging button.dt-paging-button {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.2rem 0.6rem;
+  min-width: 2rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+div.dt-paging button.dt-paging-button:hover:not(.disabled):not(.current) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+div.dt-paging button.dt-paging-button.current {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+div.dt-paging button.dt-paging-button.disabled {
+  color: var(--faint);
+  cursor: not-allowed;
+}
+
 /* ---- Inline code & code blocks ---- */
 code, kbd, samp {
   font-family: var(--font-mono);
@@ -1223,8 +1339,12 @@ a.person-row__name:hover {
   text-decoration: none;
 }
 
-/* ---- Drop cap on the lede paragraph (Storyteller signature) ---- */
-.post__body > p:first-of-type::first-letter {
+/* ---- Drop cap on the lede paragraph (Storyteller signature) ----
+   JS (drop-cap.js) wraps the first character in <span class="drop-cap">
+   so only that letter is styled (the CSS ::first-letter pseudo-element
+   would otherwise include immediately-following punctuation per spec,
+   so "I'" would be styled together). */
+.post__body > p:first-of-type .drop-cap {
   float: left;
   font-family: var(--font-display);
   font-weight: 700;

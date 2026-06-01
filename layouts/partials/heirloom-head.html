@@ -4,6 +4,7 @@
 {{- $theme    := resources.Get "js/theme.js"          | minify | fingerprint -}}
 {{- $lbJS     := resources.Get "js/lightbox.js"       | minify | fingerprint -}}
 {{- $stJS     := resources.Get "js/storytimeline.js"  | minify | fingerprint -}}
+{{- $dcJS     := resources.Get "js/drop-cap.js"       | minify | fingerprint -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,6 +50,7 @@
 <script defer src="/js/image-float.js"></script>
 <script defer src="{{ $lbJS.RelPermalink }}" integrity="{{ $lbJS.Data.Integrity }}"></script>
 <script defer src="{{ $stJS.RelPermalink }}" integrity="{{ $stJS.Data.Integrity }}"></script>
+<script defer src="{{ $dcJS.RelPermalink }}" integrity="{{ $dcJS.Data.Integrity }}"></script>
 
 <!-- DataTables backend (per CLAUDE.md amendment). JS only; visuals via base.css.
      TODO step ≥4: gate by front-matter flag so it doesn't ship on tableless pages. -->
