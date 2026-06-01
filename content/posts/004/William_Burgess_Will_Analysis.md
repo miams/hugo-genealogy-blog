@@ -1,5 +1,5 @@
 ---
-title: "Summary of the will of William Burgess (1622-1686)"
+title: "Summary of the will of William Burgess"
 date: 2025-03-16T06:51:02-05:00
 draft: false
 layout: heirloom
