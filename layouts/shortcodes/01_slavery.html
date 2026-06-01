@@ -16,30 +16,36 @@
         </tr>
       {{ end }}
     </tbody>
-    <table></table>
   </table>
 {{- end -}}
 <script>
-  $(document).ready(function () {
-    $("#slave-table").DataTable({
-      colReoder: false,
-      autoFill: false,
-      buttons: false,
-      fixedHeader: false,
-      keyTable: false,
-      responsive: true,
-      rowReoder: false,
-      columnDefs: [
-        {
-          targets: 0,
-          className: "dt-body-center",
-        },
-        {
-          targets: -1,
-          className: "dt-body-nowrap",
-          width: "30%",
-        },
-      ],
-    });
-  });
+  (function () {
+    function init() {
+      if (window.jQuery && window.jQuery.fn && window.jQuery.fn.DataTable) {
+        window.jQuery("#slave-table").DataTable({
+          paging: false,
+          searching: false,
+          info: false,
+          lengthChange: false,
+          ordering: true,
+          autoWidth: false,
+          responsive: true,
+          layout: { topStart: null, topEnd: null, bottomStart: null, bottomEnd: null },
+          columnDefs: [
+            { targets: 0, className: "dt-right" },
+            { targets: 3, createdCell: function (td, cellData) {
+              if (String(cellData).trim() === "Escaped") td.classList.add("is-escaped");
+            }}
+          ]
+        });
+      } else {
+        setTimeout(init, 50);
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
 </script>

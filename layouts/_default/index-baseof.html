@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}">
+<head>
+{{- partial "heirloom-head.html" . -}}
+</head>
+<body>
+{{ partial "heirloom-header.html" . }}
+
+<main id="main">
+{{- block "main" . }}{{ end -}}
+</main>
+
+{{ partial "heirloom-footer.html" . }}
+</body>
+</html>

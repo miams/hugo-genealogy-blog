@@ -1,0 +1,30 @@
+{{- /*
+  parents-siblings widget — per CLAUDE.md §5.6.
+  Renders the post's parents (with Father/Mother role tags in accent) and
+  the siblings list. The post's own subject is highlighted within the
+  siblings list (current=true on the PersonRow).
+*/ -}}
+{{- $parents  := .Params.relations.parents -}}
+{{- $siblings := .Params.relations.siblings -}}
+{{- if or $parents $siblings }}
+<section class="widget widget--parents-siblings" aria-labelledby="ps-heading">
+  <h3 id="ps-heading" class="widget__heading">Parents &amp; Siblings</h3>
+
+  {{- with $parents }}
+  <div class="widget__group">
+    {{- range . }}
+    {{ partial "widgets/person-row.html" . }}
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- with $siblings }}
+  <div class="widget__group widget__group--siblings">
+    <h4 class="widget__subheading">Siblings ({{ len . }})</h4>
+    {{- range . }}
+    {{ partial "widgets/person-row.html" . }}
+    {{- end }}
+  </div>
+  {{- end }}
+</section>
+{{- end -}}

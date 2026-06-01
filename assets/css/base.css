@@ -1,0 +1,1537 @@
+/*
+ * base.css — heirloom theme
+ * Type scale, reading measure, prose, tables. Uses tokens.css custom properties.
+ * No hardcoded hex or font here — if you reach for one, add a token instead (§8).
+ */
+
+/* ---- Reset (minimal) ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img, picture, svg { display: block; max-width: 100%; height: auto; }
+button { font: inherit; cursor: pointer; }
+
+/* ---- Document ---- */
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-feature-settings: "kern", "liga", "calt";
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+/* ---- Layout: prose lives in a ~66ch column ---- */
+.prose {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.prose > * + * {
+  margin-block-start: 1.1em;
+}
+
+/* ---- Headings (display face) ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-block: 0;
+}
+
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-2); margin-block-start: 2em; }
+h3 { font-size: var(--step-1); margin-block-start: 1.6em; }
+h4 { font-size: var(--step-0); text-transform: uppercase; letter-spacing: 0.06em; color: var(--soft); }
+
+/* ---- Body copy ---- */
+p {
+  margin-block: 0;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+p + p { margin-block-start: 1em; text-indent: 0; }
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+strong { font-weight: 700; }
+em     { font-style: italic; }
+small  { font-size: var(--step--1); color: var(--soft); }
+
+::selection { background: var(--accent-tint); color: var(--ink); }
+
+/* ---- Blockquote: left-aligned for correspondence and primary-source
+   transcriptions. Italic Spectral so the reader can tell it is quoted
+   from a source, but justified left to read like the underlying document.
+   A small fleuron sits centered above as a section ornament. */
+blockquote {
+  margin: 2em auto 2em;
+  padding: 0 0 0 1.25rem;
+  max-width: 34rem;
+  border-inline-start: 2px solid var(--rule);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-0);
+  line-height: 1.55;
+  color: var(--ink);
+  text-align: left;
+}
+
+blockquote::before {
+  content: "❦";                  /* fleuron — classic book ornament */
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--accent);
+  margin: 0 auto 1em;
+  /* Center the fleuron above the left-aligned quote */
+  position: relative;
+  left: -0.625rem; /* offset for the left border-padding */
+}
+
+blockquote cite {
+  display: block;
+  margin-block-start: 1em;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--step--1);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--soft);
+}
+
+/* ---- Tables (per §5.3) ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.5em;
+  font-variant-numeric: tabular-nums;
+}
+
+th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soft);
+  padding: 0.6em 0.75em;
+  border-block-end: 1px solid var(--accent);
+}
+
+td {
+  padding: 0.55em 0.75em;
+  border-block-end: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+/* Right-align numeric columns (DataTables hook); accent for status words */
+.post__body td.dt-right,
+.post__body th.dt-right {
+  text-align: right;
+}
+.post__body td.is-escaped {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* Mobile: allow tables to scroll horizontally if narrower than content. */
+@media (max-width: 600px) {
+  .post__body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* DataTables sort affordances (when present). DT toggles classes on <th>;
+   we style them to fit the design instead of using DT's bundled CSS. */
+th.dt-orderable-asc,
+th.dt-orderable-desc,
+th.dt-orderable-asc-desc {
+  cursor: pointer;
+  position: relative;
+  padding-inline-end: 1.6em;
+  user-select: none;
+}
+th.dt-orderable-asc::after,
+th.dt-orderable-desc::after,
+th.dt-orderable-asc-desc::after {
+  content: "↕";
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--faint);
+  font-size: 0.85em;
+  font-family: var(--font-mono);
+}
+th.dt-ordering-asc::after  { content: "↑"; color: var(--accent); }
+th.dt-ordering-desc::after { content: "↓"; color: var(--accent); }
+th.dt-orderable-asc:hover::after,
+th.dt-orderable-desc:hover::after { color: var(--accent); }
+
+/* DataTables wrapper produced even with all features off — keep it invisible. */
+div.dt-container { margin-block: 1.5em; }
+div.dt-container > div.dt-layout-row:empty { display: none; }
+table.dataTable { margin-block: 0; }
+
+/* ---- Inline code & code blocks ---- */
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+:not(pre) > code {
+  background: var(--accent-tint);
+  color: var(--ink);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  background: var(--accent-tint);
+  color: var(--ink);
+  padding: 1rem 1.25rem;
+  border-radius: 2px;
+  overflow-x: auto;
+}
+
+/* ---- Footnotes (Hugo's default markup) ----
+   §5.4 calls for a sidenote rail on wide screens; that's a later step.
+   For now we just set the foot apparatus cleanly. */
+hr.footnotes-separator,
+.footnotes hr,
+hr {
+  border: 0;
+  border-block-start: 1px solid var(--rule);
+  margin-block: 2.5em 1em;
+  overflow: visible;
+}
+
+.footnotes,
+[role="doc-endnotes"] {
+  font-size: var(--step--1);
+  line-height: 1.55;
+  color: var(--soft);
+}
+
+.footnotes ol {
+  padding-inline-start: 1.5em;
+}
+
+.footnotes li + li { margin-block-start: 0.5em; }
+
+sup.footnote-ref a,
+a.footnote-ref,
+sup > a[href^="#fn"] {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 400;
+  padding-inline: 0.1em;
+}
+
+/* ---- Title band (Storyteller signature) ---- */
+.title-band {
+  background: var(--band);
+  color: var(--paper);
+  padding: clamp(2.5rem, 6vw, 5rem) 1.25rem clamp(2rem, 5vw, 4rem);
+  text-align: center;
+}
+.title-band__inner {
+  max-width: 50rem;
+  margin-inline: auto;
+}
+.title-band .kicker {
+  color: var(--accent);
+  margin-block-end: 0.7em;
+}
+.title-band h1 {
+  /* Always the lightest available color so it reads on the dark band.
+     --paper is light in light mode but flips dark in dark mode, so we
+     swap to --ink (which flips light) under [data-theme="dark"]. */
+  color: var(--paper);
+  font-size: var(--step-4);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin: 0;
+}
+[data-theme="dark"] .title-band h1 {
+  color: var(--ink);
+}
+.title-band .lifespan {
+  color: var(--soft);
+  margin-block-start: 0.5em;
+}
+.title-band__meta {
+  margin-block: 1.6em 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+.title-band__meta time { color: inherit; }
+
+/* ---- Hero (full-bleed) ---- */
+.hero {
+  margin: 0;
+}
+.hero img {
+  display: block;
+  width: 100%;
+  height: clamp(18rem, 55vh, 38rem);
+  object-fit: cover;
+  object-position: center;
+  background: var(--accent-tint);
+}
+.hero__caption {
+  max-width: var(--measure);
+  margin: 0.7em auto 0;
+  padding: 0 1.25rem;
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: var(--step--1);
+  color: var(--soft);
+  text-align: center;
+}
+
+/* ---- Post body wrapper: breathing room after title-band / hero ---- */
+.post__body {
+  padding-block-start: clamp(2rem, 4vw, 3rem);
+  padding-block-end: 2rem;
+}
+
+/* ---- Person widgets (CLAUDE.md §5.6) ----
+   Inline blocks between the hero and the prose body. Hairline-topped
+   section with a small-caps accent heading, no FamilySearch box chrome. */
+.post-widgets {
+  max-width: var(--measure);
+  margin: 2rem auto 0;
+  padding-inline: 1.25rem;
+}
+
+.widget {
+  border-block-start: 1px solid var(--rule);
+  padding-block-start: 1.25rem;
+  margin-block-end: 2rem;
+}
+
+.widget__heading {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.widget__subheading {
+  grid-column: 1 / -1;            /* span all grid columns (fixes h4 colliding with first row) */
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 1.1rem 0 0.4rem;
+}
+
+.widget__group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  column-gap: 1rem;
+  row-gap: 0.1rem;
+}
+
+/* ---- PersonRow (CLAUDE.md §5.6 atom) ----
+   Dense single-line row: optional role chip + name + lifespan.
+   Uses --font-text (Newsreader, more compact than Spectral) so longer
+   names fit in narrow grid columns without wrapping. */
+.person-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.45em;
+  padding: 0.15em 0.4em;
+  border-radius: 2px;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+.person-row__role {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95em;
+  color: var(--accent);
+}
+
+.person-row__name {
+  font-family: var(--font-display);
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+}
+
+a.person-row__name:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.person-row__life {
+  margin-inline-start: auto;        /* push lifespan to right edge of cell */
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78em;
+  color: var(--soft);
+  white-space: nowrap;
+}
+
+/* Post subject highlighted in the siblings list. */
+.person-row--current {
+  background: var(--accent-tint);
+}
+.person-row--current .person-row__name {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---- Simple life timeline (CLAUDE.md §5.5a) ----
+   Horizontal dotted rail with year + label per milestone; terminal event
+   filled accent. Below 700px the rail collapses to a vertical stack. */
+.timeline {
+  margin: 1.5rem 0 2.25rem;
+}
+.timeline__rail {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  position: relative;
+  padding-block-start: 1.4rem;
+}
+.timeline__rail::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0.3rem;
+  top: calc(1.4rem - 5px);
+  border-block-start: 1px dashed var(--line);
+  z-index: 0;
+}
+.timeline__item {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.timeline__dot {
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--accent);
+  margin: 0 auto 0.55rem;
+  box-sizing: border-box;
+}
+.timeline__item--terminal .timeline__dot {
+  background: var(--accent);
+}
+.timeline__year {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.timeline__label {
+  display: block;
+  font-family: var(--font-text);
+  font-size: 0.78em;
+  line-height: 1.3;
+  color: var(--soft);
+  margin-block-start: 0.15em;
+  text-wrap: balance;
+}
+
+@media (max-width: 700px) {
+  .timeline__rail {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding-block-start: 0;
+  }
+  .timeline__rail::before {
+    inset-inline: auto;
+    left: 5px;
+    top: 0.4em;
+    bottom: 0.4em;
+    border-block-start: 0;
+    border-inline-start: 1px dashed var(--line);
+  }
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    column-gap: 0.75rem;
+    text-align: left;
+    flex: 0 0 auto;
+    padding-inline-start: 0.5rem;
+  }
+  .timeline__dot {
+    grid-row: 1 / span 2;
+    align-self: center;
+    margin: 0;
+  }
+  .timeline__year { font-size: 0.95em; }
+  .timeline__label { font-size: 0.88em; margin-block-start: 0; }
+}
+
+/* ---- Story Timeline (CLAUDE.md §5.5b) ----
+   Default: vertical list of chapter cards (semantic, no-JS fallback).
+   JS adds .storytimeline--interactive to enable the horizontal axis. */
+
+.storytimeline {
+  margin: 2.5rem 0;
+}
+/* Focus ring — the section is tabindex=0 so readers can use arrow keys to
+   step through chapters. */
+.storytimeline:focus { outline: none; }
+.storytimeline:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+/* Default vertical list */
+.storytimeline__chapters {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+.storytimeline__chapter {
+  position: relative;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  border-inline-start: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent-tint) 50%, transparent);
+}
+.storytimeline__dot { display: none; }       /* JS layout only */
+.storytimeline__tick { display: none; }      /* JS layout only */
+.storytimeline__yearlabel { display: none; } /* JS layout only — meta line carries the year in no-JS mode */
+.storytimeline__kind {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: 0.2em;
+}
+.storytimeline__title {
+  font-family: var(--font-display);
+  font-size: 0.92em;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0;
+}
+.storytimeline__meta {
+  font-family: var(--font-text);
+  font-size: 0.74em;
+  color: var(--soft);
+  margin: 0.15em 0 0.35em;
+  line-height: 1.3;
+}
+.storytimeline__year { font-variant-numeric: tabular-nums; }
+.storytimeline__age  { font-style: italic; }
+.storytimeline__body {
+  font-family: var(--font-text);
+  font-size: 0.78em;
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---- JS-enhanced horizontal axis ---- */
+.storytimeline--interactive {
+  --card-w: 11rem;
+  --card-gap: 0.5rem;
+  position: relative;
+  margin-inline: calc(-1 * (1.25rem));   /* break out of prose padding for more room */
+  padding-block: 1rem;
+  user-select: none;
+}
+.storytimeline--interactive .storytimeline__viewport {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+.storytimeline--interactive .storytimeline__viewport.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;       /* live-track during drag without smooth lag */
+}
+.storytimeline--interactive .storytimeline__track {
+  position: relative;
+  height: 30rem;
+}
+/* Axis line */
+.storytimeline--interactive .storytimeline__track::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  border-top: 1px dashed var(--line);
+}
+/* Decade ticks on axis */
+.storytimeline--interactive .storytimeline__tick {
+  display: block;
+  position: absolute;
+  top: calc(50% + 0.5em);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  transform: translateX(-50%);
+}
+.storytimeline--interactive .storytimeline__tick::before {
+  content: "";
+  position: absolute;
+  top: -1.2em;
+  left: 50%;
+  width: 1px;
+  height: 0.7em;
+  background: var(--line);
+}
+/* Chapter list becomes positioning context */
+.storytimeline--interactive .storytimeline__chapters {
+  display: block;
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.storytimeline--interactive .storytimeline__chapter {
+  position: absolute;
+  width: var(--card-w);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  transition: transform 0.3s ease;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="above"] {
+  top: 0.5rem;
+  bottom: 50%;
+  padding-block-end: 1.5rem;          /* room for the dot at axis */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="below"] {
+  top: 50%;
+  bottom: 0.5rem;
+  padding-block-start: 1.5rem;        /* room for the dot at axis */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.storytimeline--interactive .storytimeline__dot {
+  display: block;
+  position: absolute;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--accent);
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="above"] .storytimeline__dot {
+  bottom: -6px;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="below"] .storytimeline__dot {
+  top: -6px;
+}
+/* Connector line from card to dot */
+.storytimeline--interactive .storytimeline__chapter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
+  z-index: -1;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="above"]::after {
+  bottom: -6px;
+  height: 1.2rem;
+}
+.storytimeline--interactive .storytimeline__chapter[data-side="below"]::after {
+  top: -6px;
+  height: 1.2rem;
+}
+/* Card itself */
+.storytimeline--interactive .storytimeline__card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.7rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.3s ease;
+}
+.storytimeline--interactive .storytimeline__card:hover {
+  border-color: var(--accent);
+}
+/* Condensed body: clamp to 3 lines so cards stay roughly the same height.
+   The active card removes the clamp to reveal full body. */
+.storytimeline--interactive .storytimeline__body {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Adaptive density modes (Phase 3) ----
+   Mode classes are toggled by JS based on px-per-year:
+     storytimeline--mode-compact   — only dots + year labels (long view)
+     storytimeline--mode-condensed — kind + title + meta, no body
+     storytimeline--mode-full      — full cards
+   The active chapter always reveals its full card regardless of mode. */
+
+/* COMPACT: hide all cards; show year label below the dot. */
+.storytimeline--mode-compact .storytimeline__chapter:not(.storytimeline__chapter--active) .storytimeline__card {
+  display: none;
+}
+.storytimeline--mode-compact .storytimeline__chapter:not(.storytimeline__chapter--active) .storytimeline__yearlabel {
+  display: block;
+  position: absolute;
+  left: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  color: var(--soft);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.storytimeline--mode-compact .storytimeline__chapter[data-side="above"] .storytimeline__yearlabel { bottom: -2.4rem; }
+.storytimeline--mode-compact .storytimeline__chapter[data-side="below"] .storytimeline__yearlabel { top: -2.4rem; }
+.storytimeline--mode-compact .storytimeline__chapter:not(.storytimeline__chapter--active)::after {
+  display: none;       /* hide connector line when no card to connect to */
+}
+/* Collision avoidance: JS hides labels that would overlap their neighbour.
+   The anchor (subject's birth) is always exempt and stays visible.
+   Specificity matches the show-rule above so source order resolves it. */
+.storytimeline--mode-compact .storytimeline__chapter--label-hidden:not(.storytimeline__chapter--active) .storytimeline__yearlabel {
+  display: none;
+}
+
+/* CONDENSED: cards visible but body hidden — title + meta only. */
+.storytimeline--mode-condensed .storytimeline__chapter:not(.storytimeline__chapter--active) .storytimeline__body {
+  display: none;
+}
+.storytimeline--mode-condensed .storytimeline__chapter:not(.storytimeline__chapter--active) .storytimeline__meta {
+  margin-block-end: 0;
+}
+
+/* ---- Layer differentiation (Phase 2) ----
+   Three layers: subject (default — full weight, accent), family (muted accent,
+   smaller), history (faint, smaller, italic). All use the same alternating
+   above/below layout; visual weight signals which kind of event a dot is. */
+
+/* FAMILY */
+.storytimeline--interactive .storytimeline__chapter[data-layer="family"] .storytimeline__dot {
+  width: 8px;
+  height: 8px;
+  border-color: var(--soft);
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="family"] .storytimeline__card {
+  font-size: 0.92em;
+  background: color-mix(in srgb, var(--accent-tint) 35%, var(--paper));
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="family"] .storytimeline__kind {
+  color: var(--soft);
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="family"] .storytimeline__title {
+  font-style: italic;
+}
+
+/* HISTORY */
+.storytimeline--interactive .storytimeline__chapter[data-layer="history"] .storytimeline__dot {
+  width: 7px;
+  height: 7px;
+  border-color: var(--faint);
+  background: var(--paper);
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="history"] .storytimeline__card {
+  font-size: 0.88em;
+  background: var(--paper);
+  border-style: dashed;
+  border-color: var(--line);
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="history"] .storytimeline__kind {
+  color: var(--faint);
+  font-style: italic;
+}
+.storytimeline--interactive .storytimeline__chapter[data-layer="history"] .storytimeline__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--soft);
+}
+/* Smaller year label for non-subject layers in compact mode */
+.storytimeline--mode-compact .storytimeline__chapter[data-layer="family"]  .storytimeline__yearlabel,
+.storytimeline--mode-compact .storytimeline__chapter[data-layer="history"] .storytimeline__yearlabel {
+  font-size: 0.62em;
+  color: var(--faint);
+}
+
+/* Layer-off: hide chapters of a toggled-off layer */
+.storytimeline--layer-subject-off .storytimeline__chapter[data-layer="subject"] { display: none; }
+.storytimeline--layer-family-off  .storytimeline__chapter[data-layer="family"]  { display: none; }
+.storytimeline--layer-history-off .storytimeline__chapter[data-layer="history"] { display: none; }
+
+/* ---- Mini-map (Phase 4) ----
+   A thin strip above the main axis that shows every event as a dot at its
+   year position, with a translucent bracket marking the current viewport.
+   Click anywhere to jump; drag the bracket to pan. */
+.storytimeline__minimap {
+  position: relative;
+  height: 2.4rem;
+  margin: 0.5rem 1.25rem 0.6rem;
+  background: color-mix(in srgb, var(--accent-tint) 35%, transparent);
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 5;     /* keep the tooltip above the viewport's cards */
+}
+.storytimeline__minimap[hidden] { display: none; }
+
+.storytimeline__minitrack {
+  position: relative;
+  height: 100%;
+}
+.storytimeline__minitrack::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline: 0.2rem;
+  border-block-start: 1px dashed var(--line);
+}
+
+.storytimeline__minidot {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;     /* sit above the bracket so hover/click reach the dot */
+}
+.storytimeline__minidot[data-layer="family"] {
+  width: 5px;
+  height: 5px;
+  background: var(--paper);
+}
+.storytimeline__minidot[data-layer="history"] {
+  width: 4px;
+  height: 4px;
+  background: var(--paper);
+  border-color: var(--faint);
+}
+.storytimeline__minidot:hover {
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+.storytimeline__bracket {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-inline: 2px solid var(--accent);
+  border-radius: 1px;
+  cursor: grab;
+  min-width: 4px;
+}
+.storytimeline__bracket.is-dragging { cursor: grabbing; }
+
+/* Minimap hover tooltip — preview a chapter before clicking. */
+.storytimeline__minitip {
+  position: absolute;
+  top: -2.2rem;
+  transform: translateX(-50%);
+  background: var(--band);
+  color: var(--paper);
+  padding: 0.25rem 0.55rem;
+  border-radius: 2px;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 4;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--band) 30%, transparent);
+}
+.storytimeline__minitip[hidden] { display: none; }
+.storytimeline__minitip::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: var(--band);
+}
+.storytimeline__minitip-year {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  margin-inline-end: 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+.storytimeline__minitip-title {
+  font-family: var(--font-text);
+}
+
+/* Hide a layer's minidots when the layer is toggled off. */
+.storytimeline--layer-subject-off .storytimeline__minidot[data-layer="subject"] { display: none; }
+.storytimeline--layer-family-off  .storytimeline__minidot[data-layer="family"]  { display: none; }
+.storytimeline--layer-history-off .storytimeline__minidot[data-layer="history"] { display: none; }
+
+/* Layer toggle chips */
+.storytimeline__layers {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+.storytimeline__chip {
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--soft);
+  padding: 0.3em 0.75em;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+}
+.storytimeline__chip[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent-tint) 60%, transparent);
+}
+.storytimeline__chip[aria-pressed="false"] {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.storytimeline__chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Active state: scale + accent ring on dot; reveal full body */
+.storytimeline--interactive .storytimeline__chapter--active {
+  z-index: 2;
+}
+.storytimeline--interactive .storytimeline__chapter--active .storytimeline__card {
+  transform: scale(1.05);
+  border-color: var(--accent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--band) 22%, transparent);
+}
+.storytimeline--interactive .storytimeline__chapter--active .storytimeline__body {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+.storytimeline--interactive .storytimeline__chapter--active .storytimeline__dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Anchor — the subject's earliest event (typically "Born"). Always carries
+   a soft accent halo so the reader can locate the start of the life at a
+   glance, even when zoomed out or when another chapter is active. */
+.storytimeline--interactive .storytimeline__chapter--anchor .storytimeline__dot {
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.storytimeline--mode-compact .storytimeline__chapter--anchor .storytimeline__yearlabel {
+  color: var(--accent);
+  font-weight: 700;
+}
+.storytimeline__minidot--anchor {
+  width: 9px !important;
+  height: 9px !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* ---- Card images (full mode only) ----
+   Each chapter may carry an `img:` path; `imgpos:` chooses where it sits
+   on the card (top | left | right, default top). Images only render in
+   full mode so condensed/compact stay quick to scan. Clicking the thumb
+   opens the existing lightbox (the `[data-lightbox]` attribute is wired
+   by lightbox.js). */
+.storytimeline__imglink { display: none; }
+.storytimeline--mode-full .storytimeline__imglink {
+  display: block;
+  overflow: hidden;
+  background: var(--band);
+}
+.storytimeline--mode-full .storytimeline__imglink:hover { opacity: 0.92; }
+.storytimeline--mode-full .storytimeline__cardimg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TOP — magazine-cutline thumbnail spanning full card width above content */
+.storytimeline--mode-full .has-img-top .storytimeline__imglink {
+  margin: -0.55rem -0.7rem 0.55rem;
+  border-radius: 2px 2px 0 0;
+}
+.storytimeline--mode-full .has-img-top .storytimeline__cardimg {
+  height: 4.5rem;
+}
+
+/* LEFT — Polaroid-strip thumbnail filling the left edge of the card */
+.storytimeline--mode-full .has-img-left .storytimeline__card {
+  display: flex;
+  gap: 0.7rem;
+  padding-inline-start: 0;
+}
+.storytimeline--mode-full .has-img-left .storytimeline__imglink {
+  flex: 0 0 4rem;
+  align-self: stretch;
+  margin-block: -0.55rem;
+  border-radius: 2px 0 0 2px;
+}
+.storytimeline--mode-full .has-img-left .storytimeline__cardbody {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* RIGHT — same as left, mirrored */
+.storytimeline--mode-full .has-img-right .storytimeline__card {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.7rem;
+  padding-inline-end: 0;
+}
+.storytimeline--mode-full .has-img-right .storytimeline__imglink {
+  flex: 0 0 4rem;
+  align-self: stretch;
+  margin-block: -0.55rem;
+  border-radius: 0 2px 2px 0;
+}
+.storytimeline--mode-full .has-img-right .storytimeline__cardbody {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Controls */
+.storytimeline__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-block-start: 1rem;
+}
+.storytimeline__controls[hidden] { display: none; }
+.storytimeline__zoomgroup,
+.storytimeline__stepgroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.storytimeline__nav {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--soft);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.1em;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.storytimeline__nav:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.storytimeline__nav:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.storytimeline__nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.storytimeline__count {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--faint);
+  letter-spacing: 0.06em;
+  min-width: 4rem;
+  text-align: center;
+}
+
+/* ---- Spouse & Children divider ---- */
+.widget__divider {
+  margin: 0.4rem 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.92em;
+  color: var(--soft);
+  padding-inline: 0.5em;
+  position: relative;
+}
+.widget__divider::before {
+  content: "❦";
+  font-style: normal;
+  color: var(--accent);
+  margin-inline-end: 0.4em;
+}
+
+/* ---- Tag chips (widget--tags) ---- */
+.tag-chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+}
+.tag-chip {
+  display: inline-block;
+  padding: 0.22em 0.7em;
+  background: var(--accent-tint);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
+  border-radius: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tag-chip:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+[data-theme="dark"] .tag-chip:hover {
+  color: var(--ink);
+}
+
+/* ---- Bottom widgets wrapper aligns with the prose column ---- */
+.post-widgets--bottom {
+  max-width: var(--measure);
+  margin: 2rem auto 0;
+  padding-inline: 1.25rem;
+}
+
+/* ---- Inline footnote reference: superscript [n] in mono accent ---- */
+.post__body sup[id^="fnref"] a,
+.post__body a.footnote-ref {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.78em;
+  padding-inline: 0.1em;
+}
+.post__body sup[id^="fnref"] a:hover,
+.post__body a.footnote-ref:hover {
+  text-decoration: underline;
+}
+
+/* ---- Foot "Sources" apparatus (§5.4.3) ----
+   Hugo emits <section class="footnotes"> at the bottom of .Content.
+   We give it a heading and tighten the list rhythm. */
+.post__body .footnotes {
+  margin-block-start: 3.5rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+}
+.post__body .footnotes hr {
+  display: none; /* Hugo's default separator; we use a border instead */
+}
+.post__body .footnotes::before {
+  content: "Sources";
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-block-end: 1em;
+}
+.post__body .footnotes ol {
+  padding-inline-start: 1.25rem;
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  line-height: 1.55;
+  color: var(--soft);
+}
+.post__body .footnotes li {
+  margin-block-end: 0.9em;
+}
+.post__body .footnotes li::marker {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Source URLs in mono (clearer character distinction for long ARKs);
+   everything else (citation prose, backlinks) stays in the serif body. */
+.post__body .footnotes a:not([href^="#fnref"]) {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--accent);
+  word-break: break-word;
+}
+.post__body .footnotes a[href^="#fnref"] {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---- Drop cap on the lede paragraph (Storyteller signature) ---- */
+.post__body > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 4em;
+  line-height: 0.88;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--accent);
+}
+
+/* ---- Article images: float at ~40% of column, alternating L/R,
+   text wraps newspaper-style around them. Lightbox handles zoom on click
+   (per CLAUDE.md §5.1 plate intent — to be formalized as a shortcode later). */
+
+/* Contain floats inside the article and let text fill better */
+article.post .post__body {
+  display: flow-root;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Section headings clear floats so an image never sits next to the next h2/h3 */
+.post__body h2,
+.post__body h3 {
+  clear: both;
+}
+
+/* Base sizing for floated images (figure with caption + bare picture).
+   Cap the floated FIGURE height so tall portrait scans don't tower over
+   their accompanying prose and leave huge gaps next to the next paragraph. */
+.post__body figure.post-figure:not(.is-full):not(.is-row),
+.post__body picture:not(figure picture) {
+  width: 40%;
+  max-width: 400px;
+  shape-outside: margin-box;
+  shape-margin: 1em;
+}
+.post__body figure.post-figure:not(.is-full):not(.is-row) img,
+.post__body picture > img {
+  max-height: 420px;
+  object-fit: contain;
+  object-position: top center;
+}
+
+/* Tables and DataTables wrappers clear floats so they always render
+   on their own line, not crammed beside a floated image. */
+.post__body table,
+.post__body div.dt-container {
+  clear: both;
+}
+
+/* Direction set per-image by /js/image-float.js (alternates in DOM order).
+   clear: both — each image waits for any previous float to finish before
+   starting. Without this, an L float and an R float can overlap vertically
+   and the prose between them gets wedged into a narrow third column. */
+.post__body [data-float="right"] {
+  float: right;
+  clear: both;
+  margin: 0.3em 0 0.6em 1.5em;
+}
+.post__body [data-float="left"] {
+  float: left;
+  clear: both;
+  margin: 0.3em 1.5em 0.6em 0;
+}
+
+.post__body figure.post-figure picture,
+.post__body figure.post-figure img,
+.post__body picture > img {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+
+.post__body figure.post-figure figcaption {
+  margin-top: 0.5em;
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.78em;
+  line-height: 1.4;
+  color: var(--soft);
+  text-align: center;
+}
+
+/* ---- Plate (CLAUDE.md §5.1): numbered document figure ---- */
+.plate .plate__link {
+  display: block;
+  text-decoration: none;
+}
+.plate .plate__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.plate .plate__caption {
+  margin-top: 0.5em;
+  font-family: var(--font-sans);
+  font-size: 0.82em;
+  line-height: 1.45;
+  color: var(--soft);
+  text-align: center;
+}
+
+.plate .plate__n {
+  display: inline;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 0.4em;
+}
+
+.plate .plate__text {
+  font-style: italic;
+}
+
+.plate .plate__credit {
+  display: block;
+  margin-top: 0.35em;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+
+/* Opt-out: full-width block figure (death notice, panoramic plates).
+   Bypasses the alternating float; renders centered, no wrap. */
+.post__body figure.post-figure.is-full {
+  float: none;
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+  display: block;
+}
+.post__body figure.post-figure.is-full img {
+  max-height: none;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  display: block;
+}
+
+/* Opt-out: row figure (e.g. all pages of a multi-page document on one line).
+   One caption below describes the set. */
+.post__body figure.post-figure.is-row {
+  float: none;
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+}
+.post__body figure.post-figure.is-row .row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75em;
+}
+.post__body figure.post-figure.is-row .row img {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  background: var(--accent-tint);
+}
+
+@media (max-width: 700px) {
+  .post__body [data-float="right"],
+  .post__body [data-float="left"],
+  .post__body figure.post-figure,
+  .post__body picture:not(figure picture) {
+    float: none;
+    clear: none;
+    width: auto;
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+  }
+  .post__body figure.post-figure:not(.is-full):not(.is-row) img {
+    max-height: none;
+  }
+  .post__body figure.post-figure.is-row .row {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---- Site shell: header & footer ---- */
+.site-header {
+  border-block-end: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.site-header__inner {
+  max-width: 60rem;
+  margin-inline: auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-0);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-brand:hover { color: var(--accent); }
+
+.site-nav {
+  margin-inline-start: auto;
+  display: flex;
+  gap: 1.25rem;
+}
+.site-nav__link {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  color: var(--soft);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.site-nav__link:hover { color: var(--accent); }
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--soft);
+  padding: 0.4em;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.theme-toggle__icon { display: block; }
+.theme-toggle__icon--moon { display: block; }
+.theme-toggle__icon--sun  { display: none; }
+[data-theme="dark"] .theme-toggle__icon--moon { display: none; }
+[data-theme="dark"] .theme-toggle__icon--sun  { display: block; }
+
+@media (max-width: 600px) {
+  .site-header__inner { gap: 0.75rem; }
+  .site-nav { gap: 0.75rem; }
+  .site-nav__link { font-size: 0.78rem; }
+}
+
+.site-footer {
+  border-block-start: 1px solid var(--rule);
+  margin-block-start: 4rem;
+  color: var(--soft);
+}
+.site-footer__inner {
+  max-width: 60rem;
+  margin-inline: auto;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+}
+.site-footer__meta {
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+
+#main {
+  display: block;
+  padding-block: 2rem;
+}
+
+/* ---- Utility ---- */
+.kicker {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: 0.5em;
+}
+
+.lifespan {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--soft);
+  font-size: var(--step-1);
+  letter-spacing: 0.02em;
+}

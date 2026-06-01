@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="post">
+
+  {{ partial "heirloom-title-band.html" . }}
+
+  {{- if .Params.hero -}}
+    {{ partial "heirloom-hero.html" . }}
+  {{- end -}}
+
+  {{- if .Params.relations -}}
+    <div class="post-widgets post-widgets--top">
+      {{ partial "widgets/parents-siblings.html" . }}
+      {{ partial "widgets/spouse-children.html" . }}
+    </div>
+  {{- end -}}
+
+  <div class="prose post__body">
+    {{ .Content }}
+  </div>
+
+  {{- if .Params.tags -}}
+    <div class="post-widgets post-widgets--bottom">
+      {{ partial "widgets/tags.html" . }}
+    </div>
+  {{- end -}}
+
+</article>
+{{ end }}

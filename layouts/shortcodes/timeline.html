@@ -1,0 +1,42 @@
+{{- /*
+  timeline — Simple intro life-context strip (CLAUDE.md §5.5a).
+  Inner content is pipe-separated lines: "YEAR | label".
+  Last entry is treated as terminal (filled accent dot).
+
+  Usage:
+    {{< timeline >}}
+    1858 | Born, Charles Town, Va.
+    1873 | Father dies, Baltimore
+    1898 | Mother dies, New York
+    1900 | Manhattan salesman
+    1905 | Saranac Lake, ill
+    1907 | Died, Goldsboro
+    {{< /timeline >}}
+*/ -}}
+{{- $raw := trim .Inner "\n " -}}
+{{- $lines := split $raw "\n" -}}
+{{- $items := slice -}}
+{{- range $lines -}}
+  {{- $trimmed := trim . " \t" -}}
+  {{- if and $trimmed (in $trimmed "|") -}}
+    {{- $parts := split $trimmed "|" -}}
+    {{- if ge (len $parts) 2 -}}
+      {{- $items = $items | append (dict "year" (trim (index $parts 0) " ") "label" (trim (index $parts 1) " ")) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $items -}}
+{{- $lastIndex := sub (len $items) 1 -}}
+<nav class="timeline" aria-label="Life timeline">
+  <ol class="timeline__rail">
+    {{- range $i, $item := $items }}
+    <li class="timeline__item{{ if eq $i $lastIndex }} timeline__item--terminal{{ end }}">
+      <span class="timeline__dot" aria-hidden="true"></span>
+      <span class="timeline__year">{{ $item.year }}</span>
+      <span class="timeline__label">{{ $item.label }}</span>
+    </li>
+    {{- end }}
+  </ol>
+</nav>
+{{- end -}}

@@ -1,3 +1,13 @@
 # Local Netlify folder
 .netlify
 ./public/*
+
+# macOS Finder noise
+.DS_Store
+**/.DS_Store
+
+# Node dependencies (Prettier etc. — installed via pnpm but not needed in repo)
+node_modules/
+
+# In-progress drafts staged outside content/
+*.textbundle/

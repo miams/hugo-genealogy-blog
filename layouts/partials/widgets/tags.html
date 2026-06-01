@@ -1,0 +1,15 @@
+{{- /*
+  tags widget (CLAUDE.md §5.6).
+  Accent-tinted tag chips linked to Hugo's tag listing pages.
+  Uses .Params.tags directly; no extra data needed.
+*/ -}}
+{{- with .Params.tags }}
+<section class="widget widget--tags" aria-labelledby="tags-heading">
+  <h3 id="tags-heading" class="widget__heading">Tags</h3>
+  <ul class="tag-chips">
+    {{- range . }}
+    <li><a class="tag-chip" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end -}}

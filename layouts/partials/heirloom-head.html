@@ -1,0 +1,58 @@
+{{- $tokens   := resources.Get "css/tokens.css"   | minify | fingerprint -}}
+{{- $base     := resources.Get "css/base.css"     | minify | fingerprint -}}
+{{- $lightbox := resources.Get "css/lightbox.css" | minify | fingerprint -}}
+{{- $theme    := resources.Get "js/theme.js"          | minify | fingerprint -}}
+{{- $lbJS     := resources.Get "js/lightbox.js"       | minify | fingerprint -}}
+{{- $stJS     := resources.Get "js/storytimeline.js"  | minify | fingerprint -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>
+{{- if .IsHome -}}
+  {{ site.Title }}
+{{- else -}}
+  {{ .Title }} · {{ site.Title }}
+{{- end -}}
+</title>
+
+{{- with .Description | default site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+
+{{- if and hugo.IsProduction (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="/favicon.ico">
+
+<!-- No-flash theme setter. Runs before paint; reads localStorage, falls back
+     to prefers-color-scheme. Kept inline for zero-latency apply. -->
+<script>
+(function(){try{var s=localStorage.getItem("heirloom-theme");var p=matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.setAttribute("data-theme",s||(p?"dark":"light"));}catch(e){}})();
+</script>
+
+<!-- Preload the two body weights (Newsreader 400/700) so prose is paintable
+     without FOIT/FOUT on first load. -->
+<link rel="preload" href="/fonts/newsreader-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/newsreader-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="{{ $tokens.RelPermalink }}"   integrity="{{ $tokens.Data.Integrity }}">
+<link rel="stylesheet" href="{{ $base.RelPermalink }}"     integrity="{{ $base.Data.Integrity }}">
+<link rel="stylesheet" href="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}">
+
+<script defer src="{{ $theme.RelPermalink }}" integrity="{{ $theme.Data.Integrity }}"></script>
+
+<!-- Image behavior: alternating L/R float marker + click-to-zoom lightbox -->
+<script defer src="/js/image-float.js"></script>
+<script defer src="{{ $lbJS.RelPermalink }}" integrity="{{ $lbJS.Data.Integrity }}"></script>
+<script defer src="{{ $stJS.RelPermalink }}" integrity="{{ $stJS.Data.Integrity }}"></script>
+
+<!-- DataTables backend (per CLAUDE.md amendment). JS only; visuals via base.css.
+     TODO step ≥4: gate by front-matter flag so it doesn't ship on tableless pages. -->
+<script defer src="/jquery-3.7.1.slim.min.js"></script>
+<script defer src="/Datatables/datatables.js"></script>
+
+{{- block "extra-head" . }}{{ end -}}

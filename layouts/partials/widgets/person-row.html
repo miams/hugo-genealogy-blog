@@ -1,0 +1,30 @@
+{{- /*
+  PersonRow — compact one-line row used inside person widgets.
+  Role tag (when present) + name + lifespan, with the post's subject
+  highlighted via .person-row--current.
+
+  Params:
+    name     full name
+    life     "1858–1907" or similar
+    role     optional role tag (Father, Mother, Spouse, …)
+    current  bool — the post's subject; gets the accent highlight
+    href     optional link target
+*/ -}}
+{{- $name    := .name -}}
+{{- $life    := .life -}}
+{{- $role    := .role -}}
+{{- $current := .current -}}
+{{- $href    := .href -}}
+
+{{- $rowClass := "person-row" -}}
+{{- if $current -}}{{- $rowClass = print $rowClass " person-row--current" -}}{{- end -}}
+
+<div class="{{ $rowClass }}">
+  {{- with $role -}}<span class="person-row__role">{{ . }}</span>{{- end }}
+  {{- if $href }}
+  <a class="person-row__name" href="{{ $href | safeURL }}">{{ $name }}</a>
+  {{- else }}
+  <span class="person-row__name">{{ $name }}</span>
+  {{- end }}
+  {{- with $life }}<span class="person-row__life">{{ . }}</span>{{- end }}
+</div>

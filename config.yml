@@ -5,6 +5,11 @@ theme: hugo-PaperMod
 
 enableRobotsTXT: true
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # allow raw <figure>/<img> blocks in markdown (heirloom .is-row / .is-full opt-outs)
+
 pagination:
   pagerSize: 5
 

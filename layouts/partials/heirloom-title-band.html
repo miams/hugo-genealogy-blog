@@ -1,0 +1,22 @@
+{{- $cat := "" -}}
+{{- with .Params.categories -}}
+  {{- $cat = index . 0 -}}
+{{- end -}}
+<header class="title-band">
+  <div class="title-band__inner">
+    {{- with $cat }}
+    <span class="kicker">{{ . }}</span>
+    {{- end }}
+
+    <h1>{{ .Title }}</h1>
+
+    {{- with .Params.lifespan }}
+    <p class="lifespan">{{ . | safeHTML }}</p>
+    {{- end }}
+
+    <p class="title-band__meta">
+      {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end -}}
+      {{- if .ReadingTime }} · {{ .ReadingTime }} min read{{ end -}}
+    </p>
+  </div>
+</header>

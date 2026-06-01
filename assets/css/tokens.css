@@ -1,0 +1,134 @@
+/*
+ * tokens.css — heirloom theme (Storyteller direction)
+ * Per CLAUDE.md §3. Custom properties only; no element styles here.
+ * Alternate directions (Heirloom A · Field Notes B) are commented at the bottom.
+ */
+
+/* ---- Self-hosted webfonts ---- */
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/spectral-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/spectral-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/spectral-latin-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/newsreader-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/newsreader-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/newsreader-latin-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/public-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/public-sans-latin-700-normal.woff2") format("woff2");
+}
+
+/* ---- Storyteller (C) — light/warm default ---- */
+:root {
+  /* type */
+  --font-display: "Spectral", Georgia, "Times New Roman", serif;
+  --font-text:    "Newsreader", Georgia, serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-sans:    "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  /* fluid type scale (1.25 major-third) */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0:  clamp(1.06rem, 1.0rem + 0.3vw, 1.19rem);   /* body */
+  --step-1:  clamp(1.33rem, 1.2rem + 0.6vw, 1.5rem);
+  --step-2:  clamp(1.66rem, 1.45rem + 1vw, 2.1rem);     /* h2 */
+  --step-3:  clamp(2.1rem, 1.7rem + 2vw, 3.1rem);
+  --step-4:  clamp(2.6rem, 1.9rem + 3.4vw, 3.9rem);     /* h1 */
+
+  --measure: 44rem;     /* ~75ch reading column (no longer paired with a rail) */
+  --rail:    13.5rem;   /* reserved for future per-page extras; not used by default layout */
+
+  /* color */
+  --paper:       #fbf8f2;
+  --band:        #221c16;
+  --ink:         #241d15;
+  --soft:        #6d6253;
+  --faint:       #938876;
+  --accent:      #b05f2e;
+  --accent-tint: #f0e2d3;
+  --rule:        #e6ddcd;
+  --line:        #cbbfa9;
+}
+
+[data-theme="dark"] {
+  --paper:       #1b1714;
+  --band:        #0f0c0a;
+  --ink:         #ece3d4;
+  --soft:        #b3a692;
+  --faint:       #8a7e6c;
+  --accent:      #d2854f;
+  --accent-tint: #2a2018;
+  --rule:        #352c24;
+  --line:        #4a3e32;
+}
+
+/*
+ * Alternate directions — swap the --font-* and color block.
+ *
+ * [data-theme-dir="A"] {
+ *   --font-display: "Cormorant Garamond", serif;
+ *   --font-text:    "EB Garamond", serif;
+ *   --paper: #f7f1e4; --ink: #2c2620; --soft: #6f6354;
+ *   --accent: #8a5a2b; --rule: #ddd0b8;
+ * }
+ * [data-theme-dir="B"] {
+ *   --font-display: "Source Serif 4", serif;
+ *   --font-text:    "Source Serif 4", serif;
+ *   --font-mono:    "IBM Plex Mono", monospace;
+ *   --paper: #faf7f1; --ink: #211f1b; --soft: #6b6358;
+ *   --accent: #7c2d28; --rule: #e3dccd; --line: #cbbfa9;
+ * }
+ */

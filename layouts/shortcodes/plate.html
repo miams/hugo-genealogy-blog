@@ -1,0 +1,72 @@
+{{- /*
+  plate — primary-source document figure (CLAUDE.md §5.1).
+  Renders a numbered <figure> with a click-to-zoom wrapper (graceful
+  no-JS fallback per §6) and italic caption + optional credit.
+
+  Usage:
+    {{< plate src="/img/001/1860-slave-schedule.jpg"
+              n="1"
+              caption="James Ijams household, 1860 federal slave schedule, Jefferson County, Virginia."
+              credit="National Archives · via Ancestry" >}}
+
+  Params:
+    src      (required)  /static path or page-resource name
+    n        (optional)  plate number; auto-numbered if omitted
+    caption  (required)  italic caption text
+    credit   (optional)  source attribution (mono)
+    alt      (optional)  alt text (defaults to caption)
+    align    (optional)  "left" | "right" | "full" (default: alternating)
+*/ -}}
+{{- $src     := .Get "src" -}}
+{{- $n       := .Get "n" -}}
+{{- $caption := .Get "caption" -}}
+{{- $credit  := .Get "credit" -}}
+{{- $alt     := .Get "alt" | default $caption -}}
+{{- $align   := .Get "align" -}}
+
+{{- /* Auto-number plates within a page if n is not provided */ -}}
+{{- if not $n -}}
+  {{- $count := .Page.Scratch.Get "plateCount" | default 0 -}}
+  {{- $count = add $count 1 -}}
+  {{- .Page.Scratch.Set "plateCount" $count -}}
+  {{- $n = $count -}}
+{{- end -}}
+
+{{- /* Resolve image: try page resource first, fall back to absolute path */ -}}
+{{- $href := $src -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+{{- if not (strings.HasPrefix $src "/") -}}
+  {{- with .Page.Resources.GetMatch $src -}}
+    {{- $href = .RelPermalink -}}
+    {{- $width = .Width -}}
+    {{- $height = .Height -}}
+  {{- end -}}
+{{- else -}}
+  {{- $disk := printf "static%s" $src -}}
+  {{- with imageConfig $disk -}}
+    {{- $width = .Width -}}
+    {{- $height = .Height -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $classes := slice "plate" "post-figure" -}}
+{{- if eq $align "left"  -}}{{- $classes = $classes | append "plate--left" -}}{{- end -}}
+{{- if eq $align "right" -}}{{- $classes = $classes | append "plate--right" -}}{{- end -}}
+{{- if eq $align "full"  -}}{{- $classes = $classes | append "is-full" -}}{{- end -}}
+
+<figure id="plate-{{ $n }}" class="{{ delimit $classes " " }}">
+  <a class="plate__link" href="{{ $href | safeURL }}" data-lightbox data-caption="{{ $caption }}" data-alt="{{ $alt }}" aria-label="Open plate {{ $n }} in viewer">
+    <img src="{{ $href | safeURL }}" alt="{{ $alt }}"
+         {{ with $width  }}width="{{ . }}"{{ end }}
+         {{ with $height }}height="{{ . }}"{{ end }}
+         loading="lazy" decoding="async">
+  </a>
+  <figcaption class="plate__caption">
+    <span class="plate__n">Plate {{ $n }}.</span>
+    <span class="plate__text">{{ $caption | safeHTML }}</span>
+    {{- with $credit }}
+    <span class="plate__credit">{{ . | safeHTML }}</span>
+    {{- end }}
+  </figcaption>
+</figure>

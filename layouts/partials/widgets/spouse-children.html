@@ -1,0 +1,48 @@
+{{- /*
+  spouse-children widget (CLAUDE.md §5.6).
+  Spouse row + a "Married — date · place" divider + Children list. Each
+  person is a PersonRow. Renders nothing if no spouse and no children.
+
+  Front-matter shape:
+    relations:
+      spouse:   { name: "…", life: "…", ref: "…" }
+      marriage: { date: "…", place: "…" }
+      children: [ { name: "…", life: "…" }, … ]
+*/ -}}
+{{- $r := .Params.relations -}}
+{{- if $r -}}
+{{- $spouse   := $r.spouse -}}
+{{- $marriage := $r.marriage -}}
+{{- $children := $r.children -}}
+{{- if or $spouse $children -}}
+
+<section class="widget widget--spouse-children" aria-labelledby="sc-heading">
+  <h3 id="sc-heading" class="widget__heading">Spouse &amp; Children</h3>
+
+  {{- with $spouse }}
+  <div class="widget__group">
+    {{ partial "widgets/person-row.html" (dict "name" .name "life" .life "role" "Spouse") }}
+  </div>
+  {{- end }}
+
+  {{- with $marriage }}
+  <p class="widget__divider">
+    Married
+    {{- with .date }} {{ . }}{{ end -}}
+    {{- if and .date .place }} · {{ end -}}
+    {{- with .place }}{{ . }}{{ end -}}
+  </p>
+  {{- end }}
+
+  {{- with $children }}
+  <div class="widget__group widget__group--children">
+    <h4 class="widget__subheading">Children ({{ len . }})</h4>
+    {{- range . }}
+    {{ partial "widgets/person-row.html" . }}
+    {{- end }}
+  </div>
+  {{- end }}
+</section>
+
+{{- end -}}
+{{- end -}}

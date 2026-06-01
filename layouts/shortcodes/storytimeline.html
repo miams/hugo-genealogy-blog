@@ -1,0 +1,137 @@
+{{- /*
+  storytimeline — interactive life axis (CLAUDE.md §5.5b).
+  Reads chapters from .Page.Params.storytimeline. Renders semantic
+  vertical list by default; JS enhances into a pannable horizontal axis
+  with absolute-positioned chapter cards alternating above/below.
+
+  Front-matter shape:
+    storytimeline:
+      - year: 1858
+        age: 0
+        kind: Birth
+        title: "Born in Charles Town"
+        place: "Jefferson County, Va."
+        body: "Fifth of nine children…"
+*/ -}}
+{{- $items := .Page.Params.storytimeline -}}
+{{- if $items -}}
+
+{{- /* Compute decade bounds for the axis. */ -}}
+{{- $allMin := 9999 -}}
+{{- $allMax := 0 -}}
+{{- /* Subject-only bounds drive fit-lifespan + anchor detection. */ -}}
+{{- $subjMin := 9999 -}}
+{{- $subjMax := 0 -}}
+{{- range $items -}}
+  {{- if lt .year $allMin }}{{ $allMin = .year }}{{ end -}}
+  {{- if gt .year $allMax }}{{ $allMax = .year }}{{ end -}}
+  {{- $layer := .layer | default "subject" -}}
+  {{- if eq $layer "subject" -}}
+    {{- if lt .year $subjMin }}{{ $subjMin = .year }}{{ end -}}
+    {{- if gt .year $subjMax }}{{ $subjMax = .year }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- if eq $subjMin 9999 }}{{ $subjMin = $allMin }}{{ end -}}
+{{- if eq $subjMax 0 }}{{ $subjMax = $allMax }}{{ end -}}
+{{- $minDecade  := mul (div $allMin 10) 10 -}}
+{{- $maxDecade  := mul (add (div $allMax 10) 1) 10 -}}
+{{- /* Extend pannable bounds by 30 years on each side so readers can explore beyond the subject's lifespan. */ -}}
+{{- $panMinYear := sub $minDecade 30 -}}
+{{- $panMaxYear := add $maxDecade 30 -}}
+
+<section class="storytimeline" data-storytimeline
+         data-min-year="{{ $panMinYear }}"
+         data-max-year="{{ $panMaxYear }}"
+         data-subject-min="{{ $subjMin }}"
+         data-subject-max="{{ $subjMax }}"
+         data-px-per-year="50"
+         tabindex="0"
+         aria-label="Life story timeline. Use left and right arrow keys to step through chapters."
+         aria-keyshortcuts="ArrowLeft ArrowRight Home End">
+
+  <div class="storytimeline__viewport">
+    <div class="storytimeline__track">
+
+      {{- /* Decade ticks (enhanced layout only; ignored in no-JS list view) */ -}}
+      {{- range $d := seq $panMinYear 10 $panMaxYear }}
+      <span class="storytimeline__tick" data-year="{{ $d }}" aria-hidden="true">{{ $d }}</span>
+      {{- end }}
+
+      <ol class="storytimeline__chapters">
+        {{- range $i, $item := $items }}
+        {{- $layer := $item.layer | default "subject" -}}
+        {{- $imgpos := $item.imgpos | default "top" -}}
+        {{- $imgClass := "" -}}
+        {{- if $item.img }}{{ $imgClass = print " has-img has-img-" $imgpos }}{{ end -}}
+        <li class="storytimeline__chapter{{ $imgClass }}"
+            data-year="{{ $item.year }}"
+            data-index="{{ $i }}"
+            data-side="{{ if eq (mod $i 2) 0 }}above{{ else }}below{{ end }}"
+            data-layer="{{ $layer }}">
+          <span class="storytimeline__dot" aria-hidden="true"></span>
+          <span class="storytimeline__yearlabel" aria-hidden="true">{{ $item.year }}</span>
+          <div class="storytimeline__card">
+            {{- with $item.img }}
+            <a class="storytimeline__imglink" href="{{ . | safeURL }}" data-lightbox
+               data-caption="{{ $item.title }}" data-alt="{{ $item.title }}"
+               aria-label="Open image for {{ $item.title }}">
+              <img class="storytimeline__cardimg" src="{{ . | safeURL }}" alt="" loading="lazy" decoding="async">
+            </a>
+            {{- end }}
+            <div class="storytimeline__cardbody">
+              {{- with $item.kind }}<span class="storytimeline__kind">{{ . }}</span>{{ end }}
+              <h4 class="storytimeline__title">{{ $item.title }}</h4>
+              <p class="storytimeline__meta">
+                <span class="storytimeline__year">{{ $item.year }}</span>
+                {{- with $item.age }} · <span class="storytimeline__age">age {{ . }}</span>{{ end -}}
+                {{- with $item.place }} · <span class="storytimeline__place">{{ . }}</span>{{ end -}}
+              </p>
+              {{- with $item.body }}<p class="storytimeline__body">{{ . | safeHTML }}</p>{{ end }}
+            </div>
+          </div>
+        </li>
+        {{- end }}
+      </ol>
+
+    </div>
+  </div>
+
+  <div class="storytimeline__minimap" hidden>
+    <div class="storytimeline__minitrack">
+      {{- range $i, $item := $items }}
+      <span class="storytimeline__minidot"
+            data-year="{{ $item.year }}"
+            data-layer="{{ $item.layer | default "subject" }}"
+            data-index="{{ $i }}"
+            data-title="{{ $item.title }}"
+            aria-label="{{ $item.year }} — {{ $item.title }}"></span>
+      {{- end }}
+      <div class="storytimeline__bracket" aria-label="Current viewport — drag to pan"></div>
+    </div>
+    <div class="storytimeline__minitip" role="tooltip" hidden>
+      <span class="storytimeline__minitip-year"></span>
+      <span class="storytimeline__minitip-title"></span>
+    </div>
+  </div>
+
+  <div class="storytimeline__controls" hidden>
+    <div class="storytimeline__zoomgroup" role="group" aria-label="Zoom">
+      <button type="button" class="storytimeline__nav storytimeline__zout"  aria-label="Zoom out">&minus;</button>
+      <button type="button" class="storytimeline__nav storytimeline__zfit"  aria-label="Fit lifespan">&#x29C9;</button>
+      <button type="button" class="storytimeline__nav storytimeline__zin"   aria-label="Zoom in">+</button>
+    </div>
+    <div class="storytimeline__layers" role="group" aria-label="Filter layers">
+      <button type="button" class="storytimeline__chip" data-layer="subject" aria-pressed="true">Subject</button>
+      <button type="button" class="storytimeline__chip" data-layer="family"  aria-pressed="true">Family</button>
+      <button type="button" class="storytimeline__chip" data-layer="history" aria-pressed="true">History</button>
+    </div>
+    <div class="storytimeline__stepgroup" role="group" aria-label="Chapter navigation">
+      <button type="button" class="storytimeline__nav storytimeline__prev" aria-label="Previous chapter">&#x2039;</button>
+      <span class="storytimeline__count" aria-live="polite"></span>
+      <button type="button" class="storytimeline__nav storytimeline__next" aria-label="Next chapter">&#x203A;</button>
+    </div>
+  </div>
+
+</section>
+
+{{- end -}}
