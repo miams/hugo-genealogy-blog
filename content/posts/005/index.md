@@ -557,7 +557,7 @@ Chamberlin, William C., and John Dorsey Iams. *Rebellion: The Rise and Fall of t
 
 Iams, John D. "Temperature Errors in Pressure Capsules Designed for Precision Measurements." Bachelor of Science thesis in Physics, Massachusetts Institute of Technology, 1942. Digital reproduction in author's possession.
 
-Massachusetts Institute of Technology. *Bulletin, Catalogue Issue, June 1941*. Volume 76, Number 4. Cambridge: Massachusetts Institute of Technology, 1941. MIT Libraries call number AC0598. Digital reproduction in author's possession.
+Massachusetts Institute of Technology. *Bulletin, Catalogue Issue*. Volume 76, Number 4. Cambridge: Massachusetts Institute of Technology, June 1941. Course Catalogs, AC-0598, Box 23, digital storage 2012_047acc. Department of Distinctive Collections, MIT Libraries, Cambridge, Massachusetts. Finding aid: <https://archivesspace.mit.edu/repositories/2/archival_objects/128510> (accessed 2 June 2026). Digital reproduction in author's possession.
 
 Massachusetts Institute of Technology. Office of the President. Records of Karl Taylor Compton and James Rhyne Killian, AC-0004. MIT Libraries, Department of Distinctive Collections, Cambridge, Massachusetts.
 
@@ -591,7 +591,7 @@ MIT ArchivesSpace. "Massachusetts Institute of Technology, Office of the Registr
 
 [^thesis-intro-2]: Iams, "Temperature Errors in Pressure Capsules" (1942), p. 4, citing Brombacher, Hersey, Theodorsen, Wildhack and Goerke. Brombacher and Wildhack are documented National Bureau of Standards instrumentation specialists of the 1930s–40s; Theodorsen was the NACA's leading aerodynamicist; the citations together place Iams's thesis within the NBS/NACA aircraft-instrument research community.
 
-[^catalog]: *Bulletin, Massachusetts Institute of Technology, Catalogue Issue, June 1941*, vol. 76, no. 4 (Cambridge: MIT, 1941); digital reproduction in author's possession, MIT Libraries call number AC0598 (file: AC0598_001942.pdf).
+[^catalog]: *Bulletin, Massachusetts Institute of Technology, Catalogue Issue*, vol. 76, no. 4 (Cambridge: Massachusetts Institute of Technology, June 1941); Course Catalogs, AC-0598, Box 23, digital storage 2012_047acc; Department of Distinctive Collections, MIT Libraries, Cambridge, Massachusetts; finding aid, *ArchivesSpace at MIT* (<https://archivesspace.mit.edu/repositories/2/archival_objects/128510> : accessed 2 June 2026); digital reproduction in author's possession (file: AC0598_001942.pdf).
 
 [^catalog-course-viii]: *MIT Bulletin*, June 1941, "VIII. Physics," pp. 64–65.
 
